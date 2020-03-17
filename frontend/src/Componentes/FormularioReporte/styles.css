@@ -1,0 +1,39 @@
+.FormularioReporte {
+  height: auto;
+  width: 100%;
+  border: 3px solid black;
+  background: rgb(246, 246, 246);
+  box-shadow: black 2px;
+  background: radial-gradient(
+    circle,
+    rgba(246, 246, 246, 1) 92%,
+    rgba(249, 244, 244, 1) 92%,
+  
+  );
+
+  border-radius: 0px 0px 41px 0px;
+  -moz-border-radius: 0px 0px 41px 0px;
+  -webkit-border-radius: 0px 0px 41px 0px;
+  border: 0px solid #000000;
+  -webkit-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 1);
+}
+
+
+.labelTexto{
+    font-size: 20px;
+}
+
+.inputText{
+  width : 150px;
+  margin: 0;
+
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+          box-sizing: border-box;
+}
+
+.rows{
+  margin-bottom: 20px;
+}
