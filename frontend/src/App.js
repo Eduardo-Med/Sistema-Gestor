@@ -8,6 +8,8 @@ import "./App.css";
 import Footer from "./Componentes/Otros/Footer";
 import { Container, Row } from "react-bootstrap";
 
+/*comentario de prueba*/
+
 function App() {
   return (
     <Router>
