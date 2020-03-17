@@ -1,0 +1,18 @@
+.ContenedorSalones{
+    height: 50vh;
+    border: solid 2px black;
+    overflow: auto;
+    margin: 20px;
+}
+
+
+.SalonContenedor{
+    height: 25vh;
+    border: solid 2px black;
+    cursor: pointer;
+    text-align: center;
+}
+
+.SalonContenedor:hover {
+   background: gray;
+}
