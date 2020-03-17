@@ -1,0 +1,5 @@
+.footer{
+    background: khaki;
+    height: 20vh;
+    position:relative; bottom:0; z-index:999999;
+}
