@@ -1,0 +1,9 @@
+.bg-light{
+    background-color: rgba(93, 163, 228, 0.589)!important;
+}
+
+.imgSmall{
+    height: 36px;
+    width: 36px;
+    margin-right: 20px;
+}
