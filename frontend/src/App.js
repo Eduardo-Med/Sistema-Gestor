@@ -3,6 +3,8 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import ReporteFallas from "./Componentes/ReporteFallas/";
 import Menu from "./Componentes/Otros/BarraNavegacion";
 import FormularioReporte from './Componentes/FormularioReporte'
+import Login from './Componentes/Login/Login.js'
+import Stadistic from './Componentes/Estadisticas/Stadistic.js'
 
 import "./App.css";
 import Footer from "./Componentes/Otros/Footer";
@@ -16,12 +18,12 @@ function App() {
 
       {/*RUTA PARA LA PARTE DE INCIAR SESION*/}
       <Route
-        path="/"
+        path="/Login"
         exact
         render={() => {
           return (
             <Container fluid>
-              {/*QUITAR TODA LA LINEA Y AGREGAR TODO LO DEL LOGIN */}
+              <Login />
             </Container>
           );
         }}
@@ -81,7 +83,7 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
-              {/*QUITAR TODA LA LINEA Y AGREGAR LA PARTE DE ESTADISTICAS */}
+                <Stadistic />
               <Row>
                 <Footer />
               </Row>
