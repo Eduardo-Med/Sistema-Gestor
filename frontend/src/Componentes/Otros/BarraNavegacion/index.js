@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Image, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom'
-import {adminInfo} from './BNAdmin/Admin-Info'
+import {adminInfo, todainfo} from './BNAdmin/Admin-Info'
 import {tecnicoInfo} from './BNTecnico/Tecnico-Info'
 import logoIth from './../../../Imagenes/logoith.png'
 import './styles.css'
@@ -33,7 +33,7 @@ export default class BarraNavegacion extends Component {
               ? 
               tecnicoInfo.map(list =>  (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
               :
-              null
+              todainfo.map(list =>  (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
             }
           </Nav>
           

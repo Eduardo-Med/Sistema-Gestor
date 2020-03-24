@@ -34,7 +34,7 @@ color: white !important;
 
 .textMenuTitulo {
   color: white !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-family: "Poppins", sans-serif;
   padding: 0 4% 0 5px;
 }
@@ -43,6 +43,7 @@ color: white !important;
   color: white !important;
   font-family: "Poppins", sans-serif;
   font-size: 14px !important;
+  text-decoration: none !important;
 }
 
 

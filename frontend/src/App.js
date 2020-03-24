@@ -16,6 +16,24 @@ function App() {
   return (
     <Router>
 
+    
+      {/*Menu de prueba con todos*/}
+      <Route
+        path="/"
+        exact
+        render={() => {
+          return (
+            <Container>
+              <Row>
+                <Menu usuario="" />
+              </Row>
+            </Container>
+          );
+        }}
+      />
+
+
+
       {/*RUTA PARA LA PARTE DE INCIAR SESION*/}
       <Route
         path="/Login"
