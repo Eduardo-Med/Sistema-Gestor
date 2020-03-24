@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Image, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 import {adminInfo} from './BNAdmin/Admin-Info'
 import {tecnicoInfo} from './BNTecnico/Tecnico-Info'
 import logoIth from './../../../Imagenes/logoith.png'
@@ -17,24 +18,25 @@ export default class BarraNavegacion extends Component {
   render() {
     const {Usuario} = this.state;
     return (
-      <Navbar bg="light" expand="sm" style={{width:'100%'}}>
-        <Navbar.Brand href="">
+      <Navbar bg="light" expand="md" style={{width:'100%'}}>
+        <Navbar.Brand href="" >
         <Image className="imgSmall"  src={logoIth} roundedCircle />
-          Sistema Gestor ITH
         </Navbar.Brand>
+        <span className="textMenuTitulo">Sistema Gestor ITH</span>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {Usuario === 'Admin' ? 
-              adminInfo.map(list => (<Nav.Link href={list.url}>{list.name}</Nav.Link>))
+              adminInfo.map((list) => (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
               :
               Usuario === 'Tecnico' 
               ? 
-              tecnicoInfo.map(list => (<Nav.Link href={list.url}>{list.name}</Nav.Link>))
+              tecnicoInfo.map(list =>  (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
               :
               null
             }
           </Nav>
+          
           <Button variant="outline-danger" size="lg" >Salir</Button>
         </Navbar.Collapse>
       </Navbar>
