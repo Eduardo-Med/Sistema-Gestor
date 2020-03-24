@@ -5,6 +5,8 @@ import Menu from "./Componentes/Otros/BarraNavegacion";
 import FormularioReporte from './Componentes/FormularioReporte'
 import Login from './Componentes/Login/Login.js'
 import Stadistic from './Componentes/Estadisticas/Stadistic.js'
+import RegistroUsuario from './Componentes/RegistroUsuarios'
+import Usuarios from './Componentes/Usuarios'
 
 import "./App.css";
 import Footer from "./Componentes/Otros/Footer";
@@ -112,7 +114,7 @@ function App() {
 
       {/*RUTA PARA LA PARTE DE VER LOS USUARIOS Y AGREGARLOS*/}
       <Route
-        path="/Usuarios"
+        path="/Registrousuario"
         exact
         render={() => {
           return (
@@ -120,7 +122,25 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
-              {/*QUITAR Y AGREGAR TODO LO DE USUARIOS*/}
+                <RegistroUsuario/>
+              <Row>
+                <Footer />
+              </Row>
+            </Container>
+          );
+        }}
+      />
+
+      <Route
+        path="/Usuario"
+        exact
+        render={() => {
+          return (
+            <Container fluid>
+              <Row>
+                <Menu usuario="Admin" />
+              </Row>
+                <Usuarios/>
               <Row>
                 <Footer />
               </Row>
@@ -129,6 +149,8 @@ function App() {
         }}
       />
     </Router>
+
+    
   );
 }
 

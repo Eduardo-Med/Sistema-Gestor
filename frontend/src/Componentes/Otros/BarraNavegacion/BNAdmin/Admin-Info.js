@@ -25,7 +25,11 @@ export const todainfo =[
     },
     {
         name: "Administrar Usuarios",
-        url: "/Usuarios"
+        url: "/Usuario"
+    },
+    {
+        name: "Registar Usuarios",
+        url: "/Registrousuario"
     },
     {
         name: "Estadisticas",
