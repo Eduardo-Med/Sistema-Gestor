@@ -35,4 +35,8 @@ export const todainfo =[
         name: "Estadisticas",
         url: "/Estadisticas"
     },
+    {
+        name: "Formulario Reportes",
+        url: "/FormularioReporte"
+    },
 ]
