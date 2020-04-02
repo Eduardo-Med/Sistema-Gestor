@@ -1,57 +1,39 @@
 import React, { Component } from "react";
-import { Container,Table, Button } from "react-bootstrap";
 
 export default class index extends Component {
   render() {
     return (
-      <Container fluid>
-        <Table striped bordered hover variant="dark" style={{marginBottom:"25vh", marginTop:"30px"}}>
-          <thead>
-            <tr>
-              <th>No. Control</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Semestre</th>
-              <th>Detalles</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>16330523</td>
-              <td>Francisco Flores</td>
-              <td>franky@hotmail.com</td>
-              <td>8</td>
-              <Button className="ml-5" variant="info">Editar</Button>
-              <Button className="ml-5" variant="danger">Eliminar</Button>
-
-            </tr>
-            <tr>
-              <td>16330594</td>
-              <td>Fernando Sanchez</td>
-              <td>FernandoSa@gmail.com</td>
-              <td>8</td>
-              <Button className="ml-5" variant="info">Editar</Button>
-              <Button className="ml-5" variant="danger">Eliminar</Button>
-            </tr>
-            <tr>
-              <td>16330545</td>
-              <td>Luis Angel Izaguirre</td>
-              <td>luisangel@gmail.com</td>
-              <td>8</td>
-              <Button className="ml-5" variant="info">Editar</Button>
-              <Button className="ml-5" variant="danger">Eliminar</Button>
-            </tr>
-            <tr>
-              <td>15330516</td>
-              <td>Carlos Cons</td>
-              <td>Cons@gmail.com</td>
-              <td>10</td>
-              <Button className="ml-5" variant="info">Editar</Button>
-              <Button className="ml-5" variant="danger">Eliminar</Button>
-            </tr>
-          </tbody>
-        </Table>
-      </Container>
+      <div className="container2">
+        <div className="form__top">
+          <h2 className="h2">Usuarios registrados</h2>
+        </div>
+        <table className="table" border="1">
+          <tr>
+            <th>No. de Control</th>
+            <th>Contraseña</th>
+            <th>Correo electronico</th>
+          </tr>
+          <tr>
+            <td>15330516</td>
+            <td>9703</td>
+            <td>cons@gmail.com</td>
+          </tr>
+          <tr>
+            <td>17330216</td>
+            <td>9910</td>
+            <td>hola@gmail.com</td>
+          </tr>
+          <tr>
+            <td>16330764</td>
+            <td>9801</td>
+            <td>1234@gmail.com</td>
+          </tr>
+        </table>
+        <div className="btn__form">
+          <input className="btn_submit" type="submit" value="REGISTRAR" />
+          <input className="btn_reset" type="reset" value="LIMPIAR" />
+        </div>
+      </div>
     );
   }
 }
