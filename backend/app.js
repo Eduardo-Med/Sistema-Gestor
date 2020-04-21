@@ -11,11 +11,12 @@ app.set('json spaces', 2)
 
 // middlewares
 app.use(cors());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(bodyParser.json({limit: '300kb'}));
 
 // routes
+app.use('/api/v1/usuario', require('./src/routes/usuario.routes'))
 
 
 module.exports = app;
