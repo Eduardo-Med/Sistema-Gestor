@@ -1,3 +1,4 @@
+  
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import ReporteFallas from "./Componentes/ReporteFallas/";
@@ -122,32 +123,18 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
+              <Row style={{minHeight: '100vh'}}>
+                <Usuarios/>
                 <RegistroUsuario/>
+              </Row>
               <Row>
-                <Footer />
+                <Footer/>
               </Row>
             </Container>
           );
         }}
       />
 
-      <Route
-        path="/Usuario"
-        exact
-        render={() => {
-          return (
-            <Container fluid>
-              <Row>
-                <Menu usuario="Admin" />
-              </Row>
-                <Usuarios/>
-              <Row>
-                <Footer />
-              </Row>
-            </Container>
-          );
-        }}
-      />
     </Router>
 
     

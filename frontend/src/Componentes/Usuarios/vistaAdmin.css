@@ -5,7 +5,8 @@
 }
 .container2
 {
-	max-width: 450px;
+
+	min-width: 100%;
 	height: auto;
 	background-color: #EFEFEF;
 	margin: 5% auto;
