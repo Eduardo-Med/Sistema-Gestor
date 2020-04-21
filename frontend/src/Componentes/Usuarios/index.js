@@ -1,36 +1,72 @@
-import React from 'react'
-
+import React, {useState, useEffect} from 'react'
+import {getUsers, deleteUsers} from '../../api/user'
+import './vistaAdmin.css'
 function Usuarios() {
-  return (
-    <div className="container2" style={{minWidth: '100%'}}>
-      <div className="form__top">
-        <h2 className="h2">Usuarios registrados</h2>
-      </div>
-      <table className="table" border="1">
-        <tr>
-          <th>No. de Control</th>
-          <th>Contraseña</th>
-          <th>Correo electronico</th>
-        </tr>
-        <tr>
-          <td>15330516</td>
-          <td>9703</td>
-          <td>cons@gmail.com</td>
-        </tr>
-        <tr>
-          <td>17330216</td>
-          <td>9910</td>
-          <td>hola@gmail.com</td>
-        </tr>
-        <tr>
-          <td>16330764</td>
-          <td>9801</td>
-          <td>1234@gmail.com</td>
-        </tr>
+  const [isLoading, setIsLoading] = useState(true);
+  const [usuarios, setUsuarios] = useState({})
+
+  useEffect(() => {
+    async function loadUsuarios() {
+      const response = await getUsers();
+      if (response.status === 200) {
+        setUsuarios(response.data.usuario);
+        console.log(response)
+        setIsLoading(false);
+      }
+    }
+    loadUsuarios();
+  }, []);
+
+
+  const eliminarUsuario=async(id)=>{
+    await deleteUsers(id)
+    window.location.reload(false);
+  }
+  
+
+  const renderUsuarios=()=> {          
+    if(!isLoading){
+      return (
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">No. de Control</th>
+            <th scope="col">Correo electronico</th>
+            <th scope="col">semestre</th>
+            <th scope="col">telefono</th>
+            <th scope="col">Accion</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {usuarios.map((usuario,index) =>(
+               <tr key={index}>
+               <td>{usuario.nombre}</td>
+               <td>{usuario.noControl}</td>
+               <td>{usuario.email}</td>
+               <td>{usuario.semestre}</td>
+               <td>{usuario.telefono}</td>
+               <td>
+                  <button className="btn btn-danger mr-2" onClick={()=>eliminarUsuario(usuario.idUsuario)}>Eliminar</button>
+               </td>
+             </tr>
+            ))}
+        </tbody>
       </table>
-      <div className="btn__form">
-        <input type="button" className="btn_submit" data-toggle="modal" data-target="#exampleModalCenter"  value="NUEVO REGISTRO"/>
-        <input className="btn_reset" type="reset" value="LIMPIAR" />
+      )
+    }
+  }
+  return (
+    <div classname="container2 center-block" style={{minWidth: '100%'}}>
+      <div classname="form__top">
+        <h2 classname="text-center mt-5" style={{textAlign: 'center'}}>Usuarios registrados</h2>
+      </div>
+      <div className="table-responsive">
+      {renderUsuarios()}
+      </div>
+      <div classname="btn__form">
+        <input type="button" className=" btn__button btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"  value="NUEVO REGISTRO"/>
       </div>
     </div>
   );
