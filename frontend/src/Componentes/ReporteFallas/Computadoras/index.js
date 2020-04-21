@@ -10,7 +10,7 @@ class Computadora extends Component {
     super(props);
 
     this.state={
-      ModalShow: true,
+      ModalShow: false,
       numComputadora: "",
     }
   }

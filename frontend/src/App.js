@@ -1,3 +1,4 @@
+  
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import ReporteFallas from "./Componentes/ReporteFallas/";
@@ -5,6 +6,8 @@ import Menu from "./Componentes/Otros/BarraNavegacion";
 import FormularioReporte from './Componentes/FormularioReporte'
 import Login from './Componentes/Login/Login.js'
 import Stadistic from './Componentes/Estadisticas/Stadistic.js'
+import RegistroUsuario from './Componentes/RegistroUsuarios'
+import Usuarios from './Componentes/Usuarios'
 
 import "./App.css";
 import Footer from "./Componentes/Otros/Footer";
@@ -15,6 +18,24 @@ import { Container, Row } from "react-bootstrap";
 function App() {
   return (
     <Router>
+
+    
+      {/*Menu de prueba con todos*/}
+      <Route
+        path="/"
+        exact
+        render={() => {
+          return (
+            <Container>
+              <Row>
+                <Menu usuario="" />
+              </Row>
+            </Container>
+          );
+        }}
+      />
+
+
 
       {/*RUTA PARA LA PARTE DE INCIAR SESION*/}
       <Route
@@ -94,7 +115,7 @@ function App() {
 
       {/*RUTA PARA LA PARTE DE VER LOS USUARIOS Y AGREGARLOS*/}
       <Route
-        path="/Usuarios"
+        path="/Registrousuario"
         exact
         render={() => {
           return (
@@ -102,15 +123,21 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
-              {/*QUITAR Y AGREGAR TODO LO DE USUARIOS*/}
+              <Row style={{minHeight: '100vh'}}>
+                <Usuarios/>
+                <RegistroUsuario/>
+              </Row>
               <Row>
-                <Footer />
+                <Footer/>
               </Row>
             </Container>
           );
         }}
       />
+
     </Router>
+
+    
   );
 }
 
