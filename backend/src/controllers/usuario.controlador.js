@@ -18,18 +18,20 @@ usuarioCtrl.getUsuarios = async (req, res) => {
 usuarioCtrl.createUsuario = async (req, res) => {
     try {
       const pool = await poolPromise
-      const {nombre, email, semestre, noControl, telefono} = req.body
+      const {nombre, email, semestre, noControl, contra,idTipo} = req.body
       const newCliente = {
         nombre,
         email,
         semestre,
         noControl,
-        telefono,
+        contra,
+        idTipo
       };
-      await pool.request().query(`INSERT INTO usuario values ('${nombre}','${email}',${semestre},'${noControl}','${telefono}') `);
+      await pool.request().query(`INSERT INTO usuario values ('${nombre}','${email}',${semestre},'${noControl}','${contra}',${idTipo}) `);
       res.status(201).json({Info: "Usuario agregado correctamente", Usuario: newCliente});
       console.log("Cliente Agregado Correctamente")
     } catch (e) {
+      console.log(e)
       res.status("400").json({code: e.code,message: e.sqlMessage});
     }
   };
