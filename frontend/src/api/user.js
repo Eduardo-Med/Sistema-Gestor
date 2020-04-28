@@ -20,7 +20,7 @@ export async function getUsers (){
 
 
 export async function addUser(data){
-    const {nombre, email, semestre, noControl, telefono} = data
+    const {nombre, email, semestre, noControl, contra} = data
     try{
       const response = await axios({
         url: `${baseUrl}/usuario`,
@@ -30,7 +30,7 @@ export async function addUser(data){
           email,
           semestre,
           noControl,
-          telefono,
+          contra,
       },
       headers: {
         "Content-Type": 'application/json',

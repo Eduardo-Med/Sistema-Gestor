@@ -31,10 +31,9 @@ function Usuarios() {
         <thead>
           <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">No. de Control</th>
             <th scope="col">Correo electronico</th>
-            <th scope="col">semestre</th>
-            <th scope="col">telefono</th>
+            <th scope="col">Semestre</th>
+            <th scope="col">numero de control</th>
             <th scope="col">Accion</th>
 
           </tr>
@@ -43,10 +42,9 @@ function Usuarios() {
             {usuarios.map((usuario,index) =>(
                <tr key={index}>
                <td>{usuario.nombre}</td>
-               <td>{usuario.noControl}</td>
                <td>{usuario.email}</td>
                <td>{usuario.semestre}</td>
-               <td>{usuario.telefono}</td>
+               <td>{usuario.noControl}</td>
                <td>
                   <button className="btn btn-danger mr-2" onClick={()=>eliminarUsuario(usuario.idUsuario)}>Eliminar</button>
                </td>
