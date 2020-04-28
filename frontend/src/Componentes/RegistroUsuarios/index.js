@@ -2,13 +2,7 @@ import React, {useState} from 'react'
 import './main.css'
 import {addUser} from '../../api/user'
 
-
-
-
-
 function RegistroUsuarios() {
-
-
     const [datosForm, setDatosForm] = useState({});
     const handleInputChange = (event) => {
         event.persist();
@@ -16,12 +10,13 @@ function RegistroUsuarios() {
     }
 
     const agregarUsuario= async()=>{
+        
         await addUser(datosForm);
         window.location.reload(false);
     }
 
     return (
-        <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog " role="document">
             <div className="container1">
                 <div class="modal-content">
@@ -33,7 +28,13 @@ function RegistroUsuarios() {
                     <input className="input1" name="email" type="email" placeholder="&#9993; Email" required onChange={handleInputChange}/>
                     <input className="input1" name="semestre" type="sem" placeholder="&#8962; Semestre" required onChange={handleInputChange}/>
                     <input className="input1" name="noControl" type="tel" placeholder="# No. Control" required onChange={handleInputChange}/>
-                    <input className="input1" name="contra" type="sem" placeholder="Contraseña" required onChange={handleInputChange}/>
+                    <input className="input1" name="contra" type="password" placeholder="Contraseña" required onChange={handleInputChange}/>
+                    <select  className="input1" name="idTipo"  type="sem" placeholder="tipo de usuario"  id="idTipo" onChange={handleInputChange}>
+                    <option value="-----">Seleccione tipo de usuario</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Soporte Técnico">Soporte Técnico</option>
+                        <option value="Reportador">Reportador</option>
+                    </select>
                     <div className="btn__form">
                         <input className="btn_submit" type="submit" onClick={() => agregarUsuario()} value="REGISTRAR"/>
                         <input  type="button" className="btn_submit" data-dismiss="modal" value="CERRAR"/>

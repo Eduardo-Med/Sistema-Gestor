@@ -5,7 +5,7 @@ export const adminInfo =[
     },
     {
         name: "Administrar Usuarios",
-        url: "/Usuarios"
+        url: "/Registrousuario"
     },
     {
         name: "Estadisticas",
@@ -25,7 +25,7 @@ export const todainfo =[
     },
     {
         name: "Administrar Usuarios",
-        url: "/Usuario"
+        url: "/Registrousuario"
     },
     {
         name: "Registar Usuarios",

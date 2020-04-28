@@ -20,7 +20,7 @@ export async function getUsers (){
 
 
 export async function addUser(data){
-    const {nombre, email, semestre, noControl, contra} = data
+    const {nombre, email, semestre, noControl, contra, idTipo} = data
     try{
       const response = await axios({
         url: `${baseUrl}/usuario`,
@@ -31,6 +31,7 @@ export async function addUser(data){
           semestre,
           noControl,
           contra,
+          idTipo
       },
       headers: {
         "Content-Type": 'application/json',
@@ -39,6 +40,24 @@ export async function addUser(data){
       return response
     }catch(error){
       console.log(error)
+      return error.response
+    }
+  }
+
+  export async function updateUser(data){
+
+    try{
+      const response = await axios({
+        url: `${baseUrl}/usuario/${data.idUsuario}`,
+        method: 'PUT',
+        data,
+        headers: {
+          "Content-Type": 'application/json'
+          
+        }
+      })
+      return response
+    }catch(error){
       return error.response
     }
   }

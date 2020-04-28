@@ -17,17 +17,26 @@ usuarioCtrl.getUsuarios = async (req, res) => {
 usuarioCtrl.createUsuario = async (req, res) => {
     try {
       const pool = await poolPromise
-      const {nombre, email, semestre, noControl, contra} = req.body
+      const {nombre, email, semestre, noControl, contra, idTipo} = req.body
       const contrasenaEncryptada =  await encryptPassword(contra)
+      let tipoID
+      
+      if(idTipo === "Administrador"){
+        tipoID = 1
+      }else if(idTipo === "Soporte Técnico"){
+        tipoID = 2
+      }else{
+        tipoID = 3
+      }
       const newCliente = {
         nombre,
         email,
         semestre,
         noControl,
         contra,
-        idTipo: 2
+        idTipo
       };
-      await pool.request().query(`INSERT INTO usuario values ('${nombre}','${email}',${semestre},'${noControl}','${contrasenaEncryptada}',${2}) `);
+      await pool.request().query(`INSERT INTO usuario values ('${nombre}','${email}',${semestre},'${noControl}','${contrasenaEncryptada}',${tipoID}) `);
       res.status(201).json({Info: "Usuario agregado correctamente", Usuario: newCliente});
       console.log("Cliente Agregado Correctamente")
     } catch (e) {
@@ -35,6 +44,33 @@ usuarioCtrl.createUsuario = async (req, res) => {
       res.status("400").json({code: e.code,message: e.sqlMessage});
     }
   };
+
+
+
+
+  usuarioCtrl.updateUsuario = async (req, res) => {
+    try {
+      const pool = await poolPromise
+      const {idUsuario,nombre, email, semestre, noControl, contra, idTipo} = req.body
+      const contrasenaEncryptada =  await encryptPassword(contra)
+      let tipoID
+
+      if(idTipo === "Administrador"){
+        tipoID = 1
+      }else if(idTipo === "Soporte Técnico"){
+        tipoID = 2
+      }else{
+        tipoID = 3
+      }
+
+        await pool.request().query(`exec Modificar_Usuario ${idUsuario}, '${nombre}','${email}',${semestre},'${noControl}','${contrasenaEncryptada}',${tipoID} `);
+        res.status(201).json({message: "Usuario Actualizado Correctamente"})
+    } catch (error) {
+        console.log(error)
+        res.status("400").json({code: error.code,message: error.sqlMessage});
+    }
+    
+}
 
   
 usuarioCtrl.deleteUsuario = async (req, res) => {
