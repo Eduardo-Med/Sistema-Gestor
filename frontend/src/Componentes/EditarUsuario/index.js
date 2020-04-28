@@ -44,9 +44,10 @@ function EditarUsuario({usuario}) {
                     <input className="input1" value={datosForm.noControl} name="noControl" type="tel" placeholder="# No. Control" required onChange={handleInputChange}/>
                     <input className="input1" value={datosForm.contra} name="contra" type="password" placeholder="Contraseña" required onChange={handleInputChange}/>
                     <select  className="input1" name="idTipo"  type="sem" placeholder="tipo de usuario"  id="idTipo" onChange={handleInputChange}>
-                        <option value="volvo">Administrador</option>
-                        <option value="saab">Soporte Técnico</option>
-                        <option value="mercedes">Reportador</option>
+                    <option value="-----">Seleccione tipo de usuario</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Soporte Técnico">Soporte Técnico</option>
+                        <option value="Reportador">Reportador</option>
                     </select>
                     <div className="btn__form">
                         <input className="btn_submit" type="submit" onClick={() => editarUsuario(datosForm)} value="EDITAR"/>
