@@ -17,6 +17,6 @@ app.use(bodyParser.json({limit: '300kb'}));
 
 // routes
 app.use('/api/v1/usuario', require('./src/routes/usuario.routes'))
-
+app.use('/api/v1/autentificar', require('./src/routes/autentificar.routes'))
 
 module.exports = app;
