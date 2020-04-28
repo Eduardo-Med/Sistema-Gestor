@@ -26,10 +26,8 @@ function App() {
         exact
         render={() => {
           return (
-            <Container>
-              <Row>
-                <Menu usuario="" />
-              </Row>
+            <Container fluid>
+              <Login />
             </Container>
           );
         }}
