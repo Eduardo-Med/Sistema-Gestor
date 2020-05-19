@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const {getUsuarios, createUsuario,deleteUsuario, updateUsuario} = require('../controllers/usuario.controlador');
+const {getUsuarios, createUsuario,deleteUsuario, updateUsuario, getUsuariosPorTipo} = require('../controllers/usuario.controlador');
 
 router
   .route("/")
@@ -12,4 +12,9 @@ router
   .route("/:idUsuario")
   .put(updateUsuario)
   .delete(deleteUsuario);
+
+router
+  .route("/tipo/:tipo")
+  .get(getUsuariosPorTipo)
+
 module.exports = router;

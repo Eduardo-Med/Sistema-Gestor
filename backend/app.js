@@ -6,7 +6,7 @@ const app = express();
 
 
 // settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 app.set('json spaces', 2)
 
 // middlewares
@@ -18,5 +18,6 @@ app.use(bodyParser.json({limit: '300kb'}));
 // routes
 app.use('/api/v1/usuario', require('./src/routes/usuario.routes'))
 app.use('/api/v1/autentificar', require('./src/routes/autentificar.routes'))
+app.use('/api/v1/estadistica', require('./src/routes/estadistica.routes'))
 
 module.exports = app;
