@@ -8,7 +8,7 @@ class CorreoControlador{
             let fecha,hora;
             fecha = moment().format().substr(0,10);;
             hora =  moment().format('h:mm:ss a').substr(0,8);
-            const {descripcion,estado,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario} = req.body
+            const {descripcion,estado,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario,email} = req.body
 
 
             const transporter = nodemailer.createTransport({
@@ -20,13 +20,13 @@ class CorreoControlador{
             })
         
             const mailOptions = {
-                from: `${nameContactanos}`,
+                from: email,
                 to: process.env.CORREO,
                 subject: "Equipo Reparado",
                 html: `<div> 
                 <h1>Gracias por su informe del equipo: ${equipo} </h1> 
                 <p><h1 >La situacion de este equipo es la siguiente: </h1></p> 
-                <p><h1 style="float: left">Problemas: </h1><span>${correo}</span></p> 
+                <p><h1 style="float: left">Problemas: </h1><span>${email}</span></p> 
                 <p><h1 style="float: left">Estado: </h1><span>${descripcion}</span></p> 
              </div> `
             }

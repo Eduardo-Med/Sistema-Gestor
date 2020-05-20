@@ -36,11 +36,13 @@ function Detalles ({ show, onHide,reporte }){
 
   async function onSubmit(data){
     setIsLoadging(true)
-    data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,idUsuario: reporte.idUsuario}
+    data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,idUsuario: reporte.idUsuario, email:reporte.email}
     console.log(data)
     await actualizarReporte(data)
     if(data.estado === "Resuelto Y Respondido"){
-      enviarCorreo(data)
+      if(reporte.email !== "admin"){
+        enviarCorreo(data)
+      }
     }
     window.location.reload(false)
   }
