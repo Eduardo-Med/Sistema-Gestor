@@ -93,6 +93,8 @@ export async function addUser(data){
       console.log(error)
       return error.response
     }
+  }
+
 
     export async function getUsersType (tipo){
       try{
@@ -128,4 +130,4 @@ export async function addUser(data){
       return error.response
     }
   }
-}
+

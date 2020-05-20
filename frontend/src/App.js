@@ -10,7 +10,6 @@ import RegistroUsuario from './Componentes/RegistroUsuarios'
 import Usuarios from './Componentes/Usuarios'
 
 import "./App.css";
-import Footer from "./Componentes/Otros/Footer";
 import { Container, Row } from "react-bootstrap";
 
 /*comentario de prueba*/
@@ -79,9 +78,6 @@ function App() {
               <Row className="justify-content-center ">
                 <FormularioReporte/>
               </Row>
-              <Row>
-                <Footer />
-              </Row>
             </Container>
           );
         }}
@@ -99,9 +95,6 @@ function App() {
                 <Menu usuario="Admin" />
               </Row>
                 <Stadistic />
-              <Row>
-                <Footer />
-              </Row>
             </Container>
           );
         }}

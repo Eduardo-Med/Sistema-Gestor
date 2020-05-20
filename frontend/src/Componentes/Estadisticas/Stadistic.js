@@ -6,6 +6,7 @@ import AtenPorMes from './Tipos/AtenPorMes';
 import PorAula from './Tipos/PorAula';
 import PorEquipo from './Tipos/PorEquipo';
 import PorPersona from './Tipos/PorPersona';
+import {accessControlAdmin} from '../../helpers/accessControlAdmin'
 import './style.css';
 
 const Stadistic = () => {
@@ -43,4 +44,4 @@ const Stadistic = () => {
   );
 }
 
-export default Stadistic;
+export default accessControlAdmin(Stadistic);
