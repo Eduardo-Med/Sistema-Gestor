@@ -38,6 +38,7 @@ function FormularioReporte(){
     const respuesta = await agregarReporte(data);
     if(respuesta.status === 200 ){
       swal("Reporte Enviado Correctamente","Presiona el boton para salir", "success");
+      window.location.reload(false)
       data={}
     }else{
       swal("A ocurrido un error intentelo de nuevo mas tarde","error")
