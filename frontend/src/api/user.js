@@ -93,6 +93,24 @@ export async function addUser(data){
       console.log(error)
       return error.response
     }
+
+    export async function getUsersType (tipo){
+      try{
+        const response = await axios({
+          url: `${baseUrl}/usuario/tipo/${tipo}`,
+          method: 'GET',
+          headers: {
+            "Content-Type": 'application/json',
+          },
+          data: {
+            tipo
+          }
+        })
+        return response
+      }catch(error){
+        console.log(error)
+        return error.response
+      }
   }
 
   export async function desactivarUsuario (id){
@@ -110,4 +128,4 @@ export async function addUser(data){
       return error.response
     }
   }
-  
+}

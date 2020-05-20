@@ -6,7 +6,7 @@ const app = express();
 
 
 // settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 app.set('json spaces', 2)
 
 // middlewares
@@ -21,5 +21,6 @@ app.use('/api/v1/autentificar', require('./src/routes/autentificar.routes'))
 app.use('/api/v1/reporte', require('./src/routes/reporte.routes'))
 app.use('/api/v1/salon', require('./src/routes/salon.routes'))
 app.use('/api/v1/correo', require('./src/routes/correo.routes'))
+app.use('/api/v1/estadistica', require('./src/routes/estadistica.routes'))
 
 module.exports = app;

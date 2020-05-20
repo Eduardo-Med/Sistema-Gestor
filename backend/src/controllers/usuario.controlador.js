@@ -127,4 +127,13 @@ usuarioCtrl.deleteUsuario = async (req, res) => {
 
 
 
+ usuarioCtrl.getUsuariosPorTipo = async (req, res) => {
+  try {
+    const pool = await poolPromise
+    const result = await pool.request().query(`exec buscarUsuariosPorTipo @Tipo = '${req.params.tipo}'`)
+    res.status("200").send({usuario: result.recordset});
+  } catch (e) {
+    res.status("204").send(e);
+  }
+};
 module.exports = usuarioCtrl;
