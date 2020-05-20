@@ -1,15 +1,19 @@
 export const adminInfo =[
     {
-        name: "Reporte de Fallas",
+        name: "Lista De Reportes De Fallas",
         url: "/ReporteFallas"
     },
     {
-        name: "Administrar Usuarios",
+        name: "Administrar Usuarios Y Salones",
         url: "/Registrousuario"
     },
     {
         name: "Estadisticas",
         url: "/Estadisticas"
+    },
+    {
+        name: "Formulario De Reportes",
+        url: "/FormularioReporte"
     },
 ]
 

@@ -17,9 +17,7 @@ import { Container, Row } from "react-bootstrap";
 
 function App() {
   return (
-    <Router>
-
-    
+    <Router>  
       {/*Menu de prueba con todos*/}
       <Route
         path="/"
@@ -58,12 +56,10 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
-              <Row className="justify-content-center">
+              <Row className="justify-content-center contenedor">
                 <ReporteFallas />
               </Row>
-              <Row>
-                <Footer />
-              </Row>
+
             </Container>
           );
         }}
@@ -80,7 +76,7 @@ function App() {
               <Row>
                 <Menu usuario="Servicio" />
               </Row>
-              <Row className="justify-content-center">
+              <Row className="justify-content-center ">
                 <FormularioReporte/>
               </Row>
               <Row>
@@ -125,9 +121,7 @@ function App() {
                 <Usuarios/>
                 <RegistroUsuario/>
               </Row>
-              <Row>
-                <Footer/>
-              </Row>
+
             </Container>
           );
         }}

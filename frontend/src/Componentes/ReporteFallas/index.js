@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Salones from './Salones/'
+
 import Computadoras from './Computadoras/'
 
 
 class ReporteFallas extends Component {
     render() {
         return (
-            <div>
-                <Salones/>
+            <div className="w-100">
+                {/* <Salones/> */}
                 <Computadoras/>
             </div>
         );

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Nav, Image, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom'
-import {adminInfo, todainfo} from './BNAdmin/Admin-Info'
+import {adminInfo} from './BNAdmin/Admin-Info'
 import {tecnico, reportador} from './BNTecnico/Tecnico-Info'
 import { useCookies } from 'react-cookie';
 import logoIth from './../../../Imagenes/logoith.png'

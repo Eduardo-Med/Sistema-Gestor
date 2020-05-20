@@ -1,0 +1,20 @@
+.rowPermiso{
+    height: 100%;
+    padding-left: 15%;
+}
+
+.error-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+}
+
+.error-container img {
+    height: 25vw;
+}
+
+.message-error-container{
+    margin-left: 30px;
+}

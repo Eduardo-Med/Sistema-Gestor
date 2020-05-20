@@ -1,180 +1,154 @@
 export const computadoraInfo = [
 
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
-  },
-
-  {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
-  },
-
-  {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E0",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Pendiente"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Ninguna"
+    numeroComputador: "E",
   },
   {
-    numeroComputador: "Eq000",
-    aula:"",
-    quienReporta: "Eduardo Medina",
-    estado: "Solucionado"
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
+  },
+  {
+    numeroComputador: "E",
   },
   
 

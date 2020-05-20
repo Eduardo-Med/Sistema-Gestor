@@ -36,5 +36,13 @@ export const salonInfo = [
   {
     SalonNumero: "L58",
     NumeroComputadoras: 20
+  },
+  {
+    SalonNumero: "B21",
+    NumeroComputadoras: 20
+  },
+  {
+    SalonNumero: "B214",
+    NumeroComputadoras: 20
   }
 ];

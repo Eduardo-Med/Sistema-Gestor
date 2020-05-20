@@ -1,6 +1,6 @@
 export const tecnico =[
     {
-        name: "Reporte de Fallas",
+        name: "Lista De Reportes De Fallas",
         url: "/ReporteFallas"
     },
     {

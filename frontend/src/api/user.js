@@ -78,4 +78,36 @@ export async function addUser(data){
       return error.response
     }
   }
+
+  export async function activarUsuario (id){
+    try{
+      const response = await axios({
+        url: `${baseUrl}/usuario/activar/${id}`,
+        method: 'DELETE',
+        headers: {
+          "Content-Type": 'application/json',
+        }
+      })
+      return response
+    }catch(error){
+      console.log(error)
+      return error.response
+    }
+  }
+
+  export async function desactivarUsuario (id){
+    try{
+      const response = await axios({
+        url: `${baseUrl}/usuario/desactivar/${id}`,
+        method: 'DELETE',
+        headers: {
+          "Content-Type": 'application/json',
+        }
+      })
+      return response
+    }catch(error){
+      console.log(error)
+      return error.response
+    }
+  }
   

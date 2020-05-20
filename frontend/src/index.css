@@ -1,0 +1,7 @@
+.contenedor{
+    height: calc(100vh - 64px - 164px);
+}
+
+.contenedorFormulario{
+    height: calc(100vh - 64px - 164px);
+}

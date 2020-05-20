@@ -3,6 +3,7 @@ import logo from './logoIth.png';
 import { useCookies } from "react-cookie";
 import './style.css';
 import {iniciarSesion} from '../../api/autentificacion'
+import {accessControlNone} from '../../helpers/accessControlNone'
 
 const Login = () => {
 
@@ -47,4 +48,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default accessControlNone(Login);

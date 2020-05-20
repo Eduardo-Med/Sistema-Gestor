@@ -12,7 +12,7 @@
         #989898 !important;
     background-blend-mode: multiply, multiply;
     height: 20vh;
-    position:relative; bottom:0; z-index:999999;
+    position:relative; bottom:0;
     font-family: "Poppins", sans-serif;
     color: white !important;
 }

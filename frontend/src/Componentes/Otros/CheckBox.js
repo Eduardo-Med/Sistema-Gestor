@@ -1,16 +1,17 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const Checkbox = ({name,id,check,disable}) => (
+const Checkbox = ({value,id,check,disable,name}) => (
   <div>
         <Form.Check
     checked={check}
     custom
     inline
     disabled={disable}
-    label={name}
+    label={value}
     type="checkbox"
     id={`custom-inline-checkbox-${id}`}
+    name={name}
   />
   </div>
 );

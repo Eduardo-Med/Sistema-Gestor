@@ -5,6 +5,24 @@
     margin: 20px;
 }
 
+.tamanoTabla1{
+    overflow-y: scroll;
+    height: 50vh;
+    width: 110%;
+}
+.tamanoTabla{
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+
+.iconoColor:hover{
+    color: red;
+    cursor: pointer;
+}
+
+
+
 
 .SalonContenedor{
     height: 25vh;
