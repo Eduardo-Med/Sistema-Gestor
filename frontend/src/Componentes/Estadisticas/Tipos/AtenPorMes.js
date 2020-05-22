@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {getStadisticAtenPorMes, getOldestYear} from '../../../api/stadistic';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, RadialChart, VerticalBarSeries,
-    VerticalBarSeriesCanvas, FlexibleWidthXYPlot} from 'react-vis';
+import { VerticalGridLines, HorizontalGridLines, XAxis, YAxis, 
+    VerticalBarSeriesCanvas, XYPlot} from 'react-vis';
   
 
 const AtenPorMes = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [year, setYear] = useState(new Date().getFullYear());
+  const year = new Date().getFullYear();
   const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
   const [semestreSelected, setSemestreSelected] = useState('I');
@@ -56,7 +55,6 @@ const semestreSelect = sem => {
           {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
         ]);
       }
-      setIsLoading(false);
     }
     else
       console.log(response)
@@ -97,7 +95,7 @@ const opcionesYear = () => {
         </div>  
         <div className='col-11 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4'>
           <h2>Fallas en {yearSelected}</h2>
-          <FlexibleWidthXYPlot xType="ordinal" height={300} width={1000} xDistance={10}>
+          <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
             <HorizontalGridLines />
@@ -109,7 +107,7 @@ const opcionesYear = () => {
             />
             <XAxis />
             <YAxis />
-          </FlexibleWidthXYPlot>
+          </XYPlot>
         </div>
       </content>
       </div>

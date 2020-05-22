@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const router = Router();
-const {getPorPersona, getEquipo, getEstadisticaYear, getEstadisticaFrecuente, getPrimerYear, getEstadisticaAtenPorMes, getSalones} = require('../controllers/estadistica.controlador');
+const {getPorPersona, getEquipo, 
+  getEstadisticaYear, getEstadisticaFrecuente, 
+  getPrimerYear, getEstadisticaAtenPorMes, 
+  getSalones, getPorEstado} = require('../controllers/estadistica.controlador');
 
 router
   .route("/fallaYear/:year")
@@ -29,6 +32,10 @@ router
   router
   .route("/persona/:year/:idUsuario/")
   .get(getPorPersona)
+
+  router
+  .route("/estado/:desde/:hasta/")
+  .get(getPorEstado)
 
   
 

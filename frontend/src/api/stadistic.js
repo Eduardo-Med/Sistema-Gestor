@@ -140,3 +140,23 @@ export async function getStadisticPersona (year, idUsuario){
     return error.response
   }
 }
+
+export async function getStadisticEstado (desde, hasta){
+  try{
+    const response = await axios({
+      url: `${baseUrl}/estadistica/estado/${desde}/${hasta}`,
+      method: 'GET',
+      headers: {
+        "Content-Type": 'application/json',
+      },
+      data: {
+        desde,
+        hasta
+      }
+    })
+    return response
+  }catch(error){
+    console.log(error)
+    return error.response
+  }
+}

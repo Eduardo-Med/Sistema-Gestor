@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {getStadisticPersona, getOldestYear} from '../../../api/stadistic';
 import {getUsersType} from '../../../api/user';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, RadialChart, VerticalBarSeries,
-    VerticalBarSeriesCanvas, FlexibleWidthXYPlot} from 'react-vis';
+import {VerticalGridLines, HorizontalGridLines, XAxis, YAxis, 
+    VerticalBarSeriesCanvas, XYPlot} from 'react-vis';
   
 
 const PorPersona = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [year, setYear] = useState(new Date().getFullYear());
+  const year = new Date().getFullYear();
   const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
   const [semestreSelected, setSemestreSelected] = useState('I');
@@ -36,7 +35,6 @@ const handleInputChangePersona = (event) => {
         const response = await getUsersType('Soporte Técnico');
         if (response.status === 200) {
           setUsuarios(response.data.usuario);
-          setIsLoading(false);
         }
       }
       loadUsuarios();
@@ -73,8 +71,6 @@ const handleInputChangePersona = (event) => {
           {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
         ]);
       }
-      
-      setIsLoading(false);
     }
     else
       console.log(response)
@@ -129,7 +125,7 @@ const opcionesPersona = () => {
         </div>  
         <div className='col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 mt-4'>
           <h2>Fallas en {yearSelected}</h2>
-          <FlexibleWidthXYPlot xType="ordinal" height={300} xDistance={100}>
+          <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
             <HorizontalGridLines />
@@ -141,7 +137,7 @@ const opcionesPersona = () => {
             />
             <XAxis />
             <YAxis />
-          </FlexibleWidthXYPlot>
+          </XYPlot>
         </div>
       </content>
       </div>

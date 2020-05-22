@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Tab, Tabs} from 'react-bootstrap';
 import Year from './Tipos/Year';
 import Frecuente from './Tipos/Frecuente';
@@ -6,6 +6,7 @@ import AtenPorMes from './Tipos/AtenPorMes';
 import PorAula from './Tipos/PorAula';
 import PorEquipo from './Tipos/PorEquipo';
 import PorPersona from './Tipos/PorPersona';
+import PorEstado from './Tipos/PorEstado'
 import {accessControlAdmin} from '../../helpers/accessControlAdmin'
 import './style.css';
 
@@ -35,6 +36,9 @@ const Stadistic = () => {
             </Tab>
             <Tab eventKey="fPorEquipo" title="Fallas Por Equipo">
               <PorEquipo/>
+            </Tab>
+            <Tab eventKey="fPorEstado" title="Reportes por Estado">
+              <PorEstado/>
             </Tab>
           </Tabs>
         </div>

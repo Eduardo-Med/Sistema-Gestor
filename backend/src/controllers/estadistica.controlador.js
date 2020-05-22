@@ -75,5 +75,15 @@ estadisticaCtrl.getPorPersona = async (req, res) => {
   }
 }
 
+estadisticaCtrl.getPorEstado = async (req, res) => {
+  try {
+    const pool = await poolPromise
+    const result = await pool.request().query(`EXEC estadisticaPorEstado @Desde = '${req.params.desde}', @Hasta = '${req.params.hasta}'`)
+    res.status("200").send({estadistica: result.recordset});
+  } catch (e) {
+    res.status("204").send(e);
+  }
+}
+
 module.exports = estadisticaCtrl;
 

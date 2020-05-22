@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {getStadisticFrecuente, getOldestYear} from '../../../api/stadistic';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, RadialChart, VerticalBarSeries,
-    VerticalBarSeriesCanvas, FlexibleWidthXYPlot} from 'react-vis';
+import {VerticalGridLines, HorizontalGridLines, XAxis, YAxis,
+    VerticalBarSeriesCanvas, XYPlot} from 'react-vis';
 
 
 const Frecuente = () => {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const year = new Date().getFullYear();
   const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
   const [semestreSelected, setSemestreSelected] = useState('I');
@@ -97,7 +97,7 @@ const Frecuente = () => {
         </div>  
         <div className='col-11 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4'>
           <h2>Fallas en {yearSelected}</h2>
-          <FlexibleWidthXYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
+          <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
             <HorizontalGridLines />
@@ -109,7 +109,7 @@ const Frecuente = () => {
             />
             <XAxis />
             <YAxis />
-          </FlexibleWidthXYPlot>
+          </XYPlot>
         </div>
       </content>
       </div>
