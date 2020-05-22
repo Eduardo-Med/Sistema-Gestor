@@ -39,7 +39,7 @@ function Detalles ({ show, onHide,reporte }){
     data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,idUsuario: reporte.idUsuario, email:reporte.email}
     console.log(data)
     await actualizarReporte(data)
-    if(data.estado === "Resuelto Y Respondido"){
+    if(data.estado === "Resuelto/Respondido"){
       if(reporte.email !== "admin"){
         enviarCorreo(data)
       }
@@ -110,9 +110,9 @@ function Detalles ({ show, onHide,reporte }){
                 <h5 className="float-left">Estado del reporte: </h5>
                 <Form.Control name="estado" ref={register({value:false})} className="w-50" as="select" custom>
                   <option>Pendiente</option>
-                  <option>Revisado Pero Pendiente</option>
+                  <option>Revisado/Pendiente</option>
                   <option>Resuelto</option>
-                  <option>Resuelto Y Respondido</option>
+                  <option>Resuelto/Respondido</option>
                 </Form.Control>
               </Col>
             </Row>

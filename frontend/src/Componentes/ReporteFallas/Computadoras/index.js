@@ -38,6 +38,10 @@ function Computadora (){
         accessor: 'estado',
       },
       {
+        Header: "Fecha",
+        accessor: 'fecha'
+      },
+      {
         // Make an expander cell
         Header: "Detalles", // No header
         id: 'expander', // It needs an ID
@@ -53,6 +57,7 @@ function Computadora (){
 
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
   const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow,} = useTable({  columns,  data: reportes,},useSortBy)
@@ -65,7 +70,8 @@ function Computadora (){
       if(responseReportes.status === 200){
         setReportes(responseReportes.data.reportes)
         setReportesAuxiliares(responseReportes.data.reportes)
-        setIsLoading(false)
+        setIsLoading(responseReportes.data.reportes)
+        console.log(responseReportes.data.reportes)
       }
       if(responseSalones.status === 200){
         setSalones(responseSalones.data.salones)
@@ -133,10 +139,21 @@ function Computadora (){
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    )
+                  {row.cells.map((cell,index) => {
+                  // eslint-disable-next-line no-lone-blocks
+                  {
+                      if(index === 4){
+                        return (
+                          <td {...cell.getCellProps()}>{cell.render('Cell').props.value.substring(0,10)}
+                          </td>
+                        )
+                      }else{
+                        return (
+                          <td {...cell.getCellProps()}>{cell.render('Cell')}
+                          </td>
+                        )
+                      }
+                    }
                   })}
                 </tr>
               )}
