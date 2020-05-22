@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {getStadisticYear, getSalones, getOldestYear} from '../../../api/stadistic';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, RadialChart, VerticalBarSeries,
-    VerticalBarSeriesCanvas, FlexibleWidthXYPlot} from 'react-vis';
+import {getSalones, getOldestYear} from '../../../api/stadistic';
+import {obtenerSalones} from "../../../api/salon"
+import {VerticalGridLines, HorizontalGridLines, XAxis, YAxis,
+    VerticalBarSeriesCanvas, XYPlot} from 'react-vis';
   
 
 const PorAula = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  
-  const [year, setYear] = useState(new Date().getFullYear());
+  const year = new Date().getFullYear();
   const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
   const [semestreSelected, setSemestreSelected] = useState('I');
-  const [salones, setSalones] = useState([]);
+  const [salones, setSalones] = useState([])
   const [aulaSelected, setAulaSelected] = useState();
 
   const [data, setData] = useState([
@@ -25,59 +24,72 @@ const PorAula = () => {
     {x: 'Cañón', y: 0}
   ]);
   
+  useEffect(() => {
+    const cargarSalones =async()=>{
+      const response = await obtenerSalones()
+      if(response.status === 200){
+        setSalones(response.data.salones)
+      }
+    }
+    cargarSalones()
+    estadisticaSalones();
+    estadisticaPrimerYear();
+  }, []);
+
   const handleInputChangeYear = (event) => {
     event.persist();
     setYearSelected(event.target.value);
-}
+  }
 
   const handleInputChange = (event) => {
     event.persist();
     setAulaSelected(event.target.value);
-}
-const semestreSelect = sem => {
-  setSemestreSelected(sem);
-}
+  }
+  const semestreSelect = sem => {
+    setSemestreSelected(sem);
+  }
   
-async function estadisticaPrimerYear() {
-  const response = await getOldestYear()
-  if (response.status === 200) {
-    setPrimerYear(response.data.estadistica[0].Year);
+  async function estadisticaPrimerYear() {
+    const response = await getOldestYear()
+    if (response.status === 200) {
+      setPrimerYear(response.data.estadistica[0].Year);
+    }
+    else
+      console.log(response)
+  };
+  
+  const renderSalones =()=>{
+    const element = salones.map(salon => (
+      <option value={salon.Nombre}>{salon.Nombre}</option>
+    ))
+    return (element);
   }
-  else
-    console.log(response)
-};
-  useEffect(() => {
-      setAulaSelected('L51')
-      estadisticaSalones();
-      estadisticaPrimerYear();
-    }, []);
 
-    const opcionesYear = () => {
-      const element = [];
-      for (let i= primerYear; i <= year; i++) {
-        element.push(<option value={i}>{i}</option>)
-      }
-      return(
-        element    
-      );  
+  const opcionesYear = () => {
+    const element = [];
+    for (let i= primerYear; i <= year; i++) {
+      element.push(<option value={i}>{i}</option>)
+    }
+    return(
+      element    
+    );  
   }
-    async function estadisticaSalones() {
-      const response = await getSalones(aulaSelected, semestreSelected, yearSelected)
-      if (response.status === 200) {
-        setData ([
-            {x: 'CPU', y: response.data.estadistica[0].CPU},
-            {x: 'Monitor', y: response.data.estadistica[0].Monitor},
-            {x: 'Teclado', y: response.data.estadistica[0].Teclado},
-            {x: 'Mouse', y: response.data.estadistica[0].Mouse},
-            {x: 'Red', y: response.data.estadistica[0].Red},
-            {x: 'Cable Energia', y: response.data.estadistica[0]["Cable Energia"]},
-            {x: 'Cable VGA/HDMI', y: response.data.estadistica[0]["Cable VGA/HDMI"]},
-            {x: 'Cañón', y: response.data.estadistica[0].Cañón}
-          ]);
-      }
-      else
-        console.log(response)
-    
+  async function estadisticaSalones() {
+    const response = await getSalones(aulaSelected, semestreSelected, yearSelected)
+    if (response.status === 200) {
+      setData ([
+          {x: 'CPU', y: response.data.estadistica[0].CPU},
+          {x: 'Monitor', y: response.data.estadistica[0].Monitor},
+          {x: 'Teclado', y: response.data.estadistica[0].Teclado},
+          {x: 'Mouse', y: response.data.estadistica[0].Mouse},
+          {x: 'Red', y: response.data.estadistica[0].Red},
+          {x: 'Cable Energia', y: response.data.estadistica[0]["Cable Energia"]},
+          {x: 'Cable VGA/HDMI', y: response.data.estadistica[0]["Cable VGA/HDMI"]},
+          {x: 'Cañón', y: response.data.estadistica[0].Cañón}
+        ]);
+    }
+    else
+      console.log(response)
   };
 
   return (
@@ -103,16 +115,7 @@ async function estadisticaPrimerYear() {
         <div className='col-11 col-sm-12 col-md-12 col-lg-6 col-xl-5 mt-2'>
           <label>Salón </label>
           <select className="form-control" onChange={handleInputChange}>
-            <option value="L51">L51</option>
-            <option value="L52">L52</option>
-            <option value="L53">L53</option>
-            <option value="L54">L54</option>
-            <option value="L55">L55</option>
-            <option value="L56">L56</option>
-            <option value="L57">L57</option>
-            <option value="L58">L58</option>
-            <option value="B21">B21</option>
-            <option value="B214">B214</option>
+            {renderSalones()}
           </select>
         </div>
         <div className='col-11 col-sm-12 col-md-12 col-lg-6 col-xl-2 mt-5'>
@@ -120,7 +123,7 @@ async function estadisticaPrimerYear() {
         </div>  
         <div className='col-11 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4'>
           <h2>Fallas en {`${yearSelected}-${semestreSelected} en ${aulaSelected} `}</h2>
-          <FlexibleWidthXYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
+          <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
             <HorizontalGridLines />
@@ -132,7 +135,7 @@ async function estadisticaPrimerYear() {
             />
             <XAxis />
             <YAxis />
-          </FlexibleWidthXYPlot>
+          </XYPlot>
         </div>
       </content>
       </div>
