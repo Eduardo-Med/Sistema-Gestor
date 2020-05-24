@@ -12,7 +12,7 @@ const PorEquipo = () => {
   const [semestreSelected, setSemestreSelected] = useState('I');
   const [salones, setSalones] = useState([])
   const [aulaSelected, setAulaSelected] = useState("B21");
-  const [equipoSelected, setEquipoSelected] = useState();
+  const [equipoSelected, setEquipoSelected] = useState("B21E01");
 
   const [data, setData] = useState([
     {x: 'CPU', y: 0},
@@ -36,6 +36,7 @@ const PorEquipo = () => {
     estadisticaEquipo();
     estadisticaPrimerYear();
     }, 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   []);
   
   const handleInputChangeYear = (event) => {

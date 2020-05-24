@@ -11,7 +11,7 @@ const PorAula = () => {
   const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
   const [semestreSelected, setSemestreSelected] = useState('I');
   const [salones, setSalones] = useState([])
-  const [aulaSelected, setAulaSelected] = useState();
+  const [aulaSelected, setAulaSelected] = useState('B21');
 
   const [data, setData] = useState([
     {x: 'CPU', y: 0},
@@ -34,6 +34,7 @@ const PorAula = () => {
     cargarSalones()
     estadisticaSalones();
     estadisticaPrimerYear();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChangeYear = (event) => {

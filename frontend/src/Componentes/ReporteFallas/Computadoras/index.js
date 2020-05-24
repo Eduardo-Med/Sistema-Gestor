@@ -19,6 +19,25 @@ function Computadora (){
   var [reportesAuxiliares, setReportesAuxiliares] = useState()
   var [indexReporte, setIndexReporte] = useState(0)
 
+  useEffect(() => {
+    async function cargarReportesySalones(){
+      const responseReportes = await obtenerReportes();
+      const responseSalones = await obtenerSalones();
+      if(responseReportes.status === 200){
+        setReportes(responseReportes.data.reportes)
+        setReportesAuxiliares(responseReportes.data.reportes)
+        setIsLoading(responseReportes.data.reportes)
+        console.log(responseReportes.data.reportes)
+      }
+      if(responseSalones.status === 200){
+        setSalones(responseSalones.data.salones)
+        setIsLoading(false)
+      }
+    }
+    cargarReportesySalones();
+  }, [])
+
+
   const columns = React.useMemo(
     () => [
       {
@@ -31,7 +50,7 @@ function Computadora (){
       },
       {
         Header: "Quien Reporta",
-        accessor: 'nombre',
+        accessor: 'nombreAnonimo',
       },
       {
         Header: "Estado",
@@ -63,23 +82,6 @@ function Computadora (){
   const {getTableProps,getTableBodyProps,headerGroups,rows,prepareRow,} = useTable({  columns,  data: reportes,},useSortBy)
   const firstPageRows = rows.slice(0, 2000)
 
-  useEffect(() => {
-    async function cargarReportesySalones(){
-      const responseReportes = await obtenerReportes();
-      const responseSalones = await obtenerSalones();
-      if(responseReportes.status === 200){
-        setReportes(responseReportes.data.reportes)
-        setReportesAuxiliares(responseReportes.data.reportes)
-        setIsLoading(responseReportes.data.reportes)
-        console.log(responseReportes.data.reportes)
-      }
-      if(responseSalones.status === 200){
-        setSalones(responseSalones.data.salones)
-        setIsLoading(false)
-      }
-    }
-    cargarReportesySalones();
-  }, [])
 
 
   const handleInputChange = async (event) => {

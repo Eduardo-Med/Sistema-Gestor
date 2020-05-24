@@ -31,8 +31,8 @@ class ReporteControlador{
             fecha = moment().format().substr(0,10);;
             hora =  moment().format('h:mm:ss a').substr(0,8);
             const pool = await poolPromise
-            const {descripcion,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario} = req.body
-            await pool.request().query(`exec Insercion_Reporte '${fecha}', '${hora}','Pendiente','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario} `);      
+            const {descripcion,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario,correoAnonimo,nombreAnonimo} = req.body
+            await pool.request().query(`exec Insercion_Reporte '${fecha}', '${hora}','Pendiente','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario},'${correoAnonimo}','${nombreAnonimo}' `);      
             res.status(200).json({Info: "Reporte Agregado Correctamente"});
             console.log("Reporte Agregado Correctamente")
           } catch (e) {

@@ -43,6 +43,7 @@ const Login = () => {
         <input className="form-control col-11 col-sm-10 col-md-6 col-lg-4 col-xl-4 mt-2" name="noControl" placeholder="Número de Control" autoFocus onChange={handleInputChange}></input>
         <input className="form-control col-11 col-sm-10 col-md-6 col-lg-4 col-xl-4 mt-2" name="password" placeholder="Contraseña" type="password" onChange={handleInputChange}></input>
         <button className="form-control text-white bg-success col-11 col-sm-10 col-md-6 col-lg-4 col-xl-4 mt-4" onClick={() => enviarInformacion()}>Ingresar</button>
+        <button className="form-control text-white bg-danger col-11 col-sm-10 col-md-6 col-lg-4 col-xl-4 mt-4" onClick={() => window.location.href='/FormularioReporte'}>No Cuento Con Numero De Control</button>
       </div>
     </div>
   );

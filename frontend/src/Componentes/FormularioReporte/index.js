@@ -8,8 +8,6 @@ import "./styles.css";
 import { computadoraInfo } from "./../ReporteFallas/Computadoras/Computadoras-info";
 import {agregarReporte} from "../../api/reporte"
 import {obtenerSalones} from "../../api/salon"
-import {accessControlCualquiera} from '../../helpers/accessControlCualquiera'
-
 
 function FormularioReporte(){
   const [cookies] = useCookies(["cookie-name"]);
@@ -17,6 +15,7 @@ function FormularioReporte(){
   const [salones, setSalones] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [datosForm, setDatosForm] = useState({Salon: "B21"});
+
 
   useEffect(() => {
     const cargarSalones =async()=>{
@@ -30,11 +29,23 @@ function FormularioReporte(){
 
     cargarSalones()
 
-  }, [])
+  }, [cookies])
 
 
   const onSubmit = async (data)=>{
-    data={...data,idUsuario:cookies.userId}
+
+    if(cookies.tipoUsuario){
+      data={...data,idUsuario:cookies.userId,correoAnonimo:'Ninguno'}
+    }else{
+      if(data.reporte){
+        data={...data,idUsuario:1};
+      }else{
+        data={...data,idUsuario:1,accion:"Ninguna"};
+      }
+
+    }
+
+
     const respuesta = await agregarReporte(data);
     if(respuesta.status === 200 ){
       swal("Reporte Enviado Correctamente","Presiona el boton para salir", "success");
@@ -76,13 +87,13 @@ function FormularioReporte(){
         <h1 onClick={()=>console.log(datosForm)} style={{ textAlign: "center", paddingBottom: 50 }}>
           Reporte De Falla
         </h1>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <Row>
             <Col xs="12" md="6">
               <Container className="labelTexto">
                 <Row className="justify-content-center">
                   <Form.Label xs="12" className="text-center">
-                    Aula
+                    Aula*
                   </Form.Label>
                   <Col xs="12">
                       {renderSalones()}
@@ -90,7 +101,7 @@ function FormularioReporte(){
                 </Row>
                 <Row className="justify-content-center">
                 <Form.Label xs="12">
-                    Equipo
+                    Equipo*
                   </Form.Label>
                   <Col xs="12">
                     <Form.Control as="select" name="Equipo" ref={register({value:false})} custom>
@@ -102,17 +113,23 @@ function FormularioReporte(){
                   </Col>
                 </Row>
                 <Row className="justify-content-center">
+                {!errors.nombreAnonimo ? 
                   <Form.Label xs="12">
-                    Nombre
+                    Nombre*
                   </Form.Label>
+                  :
+                  <Form.Label className="text-danger" xs="12">
+                    {errors.nombreAnonimo.message}
+                  </Form.Label>
+                  }
                   <Col xs="12" >
-                    <Form.Control type="text" name="nombre" ref={register({value:false})} placeholder="¿Quien reporta?" />
+                    <Form.Control type="text" name="nombreAnonimo" ref={register({required: {value:true,message:'Este campo es obligatorio'}})} placeholder="¿Quien reporta?" />
                   </Col>
                 </Row>
                 <Row className="justify-content-center">
                   {!errors.descripcion ? 
                   <Form.Label xs="12">
-                    Descripción
+                    Descripción*
                   </Form.Label>
                   :
                   <Form.Label className="text-danger" xs="12">
@@ -125,7 +142,7 @@ function FormularioReporte(){
                       rows="3"
                       name="descripcion" 
                       ref={register({required: {value:true,message:'Este campo es obligatorio'}})}
-                      placeholder="Descripcion De La Falla"
+                      placeholder="Descripcion De La Falla.   Favor De Anotar Con El Mayor Detalle Posible La Falla Encontrada"
                     />
                   </Col>
                 </Row>
@@ -140,6 +157,8 @@ function FormularioReporte(){
                   </Form.Label>
                   }
                   <Col xs="12">
+                  {
+                    cookies.tipoUsuario ?
                     <Form.Control
                       as="textarea"
                       rows="3"
@@ -147,8 +166,42 @@ function FormularioReporte(){
                       name="accion" 
                       placeholder="Acción Tomada"
                     />
+                    :
+                    <Form.Control
+                    as="textarea"
+                    rows="3"
+                    ref={register({required: {value:false}})}
+                    name="accion" 
+                    placeholder="Acción Tomada"
+                  />
+                  }
                   </Col>
                 </Row>
+                {
+                  !cookies.tipoUsuario ?
+                  <Row className="justify-content-center">
+                    {!errors.correoAnonimo ? 
+                    <Form.Label xs="12">
+                      Correo
+                    </Form.Label>
+                    :
+                    <Form.Label className="text-danger" xs="12">
+                      {errors.correoAnonimo.message}
+                    </Form.Label>
+                    }
+                    <Col xs="12">
+                      <Form.Control
+                        as="textarea"
+                        rows="3"
+                        ref={register({pattern: {value: /[a-z0-9_.-]+@[a-z0-9]+\.[a-z]{2,}/, message:'Correo invalido'}})}
+                        name="correoAnonimo" 
+                        placeholder="Correo.   (Opcional) Solo Si Desea Ver Lo Ocurrido Con Su Reporte"
+                      />
+                    </Col>
+                  </Row>
+                  :
+                  null
+                }
               </Container>
             </Col>
             <Col xs="12" md="6" className="mb">
@@ -260,4 +313,4 @@ function FormularioReporte(){
 }
 
 
-export default accessControlCualquiera(FormularioReporte)
+export default FormularioReporte

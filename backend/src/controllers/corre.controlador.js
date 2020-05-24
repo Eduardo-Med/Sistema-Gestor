@@ -20,7 +20,7 @@ class CorreoControlador{
         
             const mailOptions = {
                 from:"Sistema Gestor ITH",
-                to: `martymcfly_isback@outlook.com`,
+                to: `${email}`,
                 subject: "Equipo Reparado",
                 html: `<div> 
                 <h1>Gracias por su informe del equipo: ${Equipo} del Salon ${Salon} </h1> 

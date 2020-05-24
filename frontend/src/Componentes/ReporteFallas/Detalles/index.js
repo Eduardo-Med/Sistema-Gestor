@@ -36,13 +36,16 @@ function Detalles ({ show, onHide,reporte }){
 
   async function onSubmit(data){
     setIsLoadging(true)
-    data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,idUsuario: reporte.idUsuario, email:reporte.email}
-    console.log(data)
-    await actualizarReporte(data)
-    if(data.estado === "Resuelto/Respondido"){
-      if(reporte.email !== "admin"){
-        enviarCorreo(data)
-      }
+
+    if(data.estado === "Resuelto" && reporte.correoAnonimo !== "Ninguno"){
+        data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,
+              idUsuario: reporte.idUsuario, email:reporte.correoAnonimo,estado:'Resuelto/Respondido'}
+        await actualizarReporte(data)
+        await enviarCorreo(data)
+    }else{
+      data = {...data, idReporte: reporte.idReporte, Salon: reporte.Salon,Equipo: reporte.Equipo,
+        idUsuario: reporte.idUsuario, email:reporte.correoAnonimo}
+        await actualizarReporte(data)
     }
     window.location.reload(false)
   }
@@ -104,7 +107,7 @@ function Detalles ({ show, onHide,reporte }){
             </Row>
             <Row xs={4} className="mt-5 justify-content-md-center">
               <Col>
-                <h5>Reportador: {reporte.nombre}</h5>
+                <h5>Reportador: {reporte.nombreAnonimo === "Ninguno" ? reporte.nombre : reporte.nombreAnonimo}</h5>
               </Col>
               <Col>
                 <h5 className="float-left">Estado del reporte: </h5>
@@ -112,7 +115,6 @@ function Detalles ({ show, onHide,reporte }){
                   <option>Pendiente</option>
                   <option>Revisado/Pendiente</option>
                   <option>Resuelto</option>
-                  <option>Resuelto/Respondido</option>
                 </Form.Control>
               </Col>
             </Row>
@@ -264,7 +266,7 @@ function Detalles ({ show, onHide,reporte }){
         <Modal.Footer>
           {renderBoton()}
           <Button variant="danger" onClick={onHide}>
-            Close
+            Cerrar
           </Button>
         </Modal.Footer>
         </Form>
