@@ -45,9 +45,11 @@ usuarioCtrl.createUsuario = async (req, res) => {
         semestre,
         noControl,
         contra,
-        idTipo
+        tipoID
       };
-      await pool.request().query(`INSERT INTO usuario values ('${nombre}','${email}',${semestre},'${noControl}','${contrasenaEncryptada}',${tipoID}) `);
+
+      console.log(newCliente)
+      await pool.request().query(`exec Insercion_Usuario '${nombre}','${email}',${semestre},'${noControl}','${contrasenaEncryptada}',${tipoID}`);
       res.status(201).json({Info: "Usuario agregado correctamente", Usuario: newCliente});
       console.log("Cliente Agregado Correctamente")
     } catch (e) {

@@ -33,18 +33,22 @@ function Salones(){
       },
 
     }).then(async (value)=>{
+
       if( value !== null && value !== ""){
-        const result = await agregarSalon(value)
-        if(result.status === 200 ){
-          swal("Salon Agregado Correctamente!", "Espere un momento porfavor", "success");
-          window.location.reload(false)
+        if(value.length > 4){
+          swal("Campo Demasiado Grande", "Intentelo de nuevo", "error");
         }else{
-          swal("A ocurrido un error!", "Intentelo de nuevo mas tarde", "error");
+          const result = await agregarSalon(value)
+          if(result.status === 200 ){
+            swal("Salon Agregado Correctamente!", "Espere un momento porfavor", "success");
+            window.location.reload(false)
+          }else{
+            swal("A ocurrido un error!", "Intentelo de nuevo mas tarde", "error");
+          }
         }
       }else{
         swal("Campo vacio", "Intentelo de nuevo", "error");
       }
-     
     }
     )
   }

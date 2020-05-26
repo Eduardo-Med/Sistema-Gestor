@@ -8,7 +8,7 @@ const PorEstado = () => {
   const [desde, setDesde] = useState();
   const [hasta, setHasta] = useState();
   const [data, setData] = useState();
-  
+
   const handleInputChangeDesde = (event) => {
     event.persist();
     setDesde(event.target.value);
@@ -43,7 +43,7 @@ const PorEstado = () => {
       <content className=' row'>
         <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Desde: </label>
-          <input type="date" className="form-control" onChange={handleInputChangeDesde}></input>
+          <input min="2020-01-01"  max="2030-01-01" type="date" className="form-control" onChange={handleInputChangeDesde}></input>
         </div>
         <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Hasta: </label>

@@ -141,7 +141,9 @@ function FormularioReporte(){
                       as="textarea"
                       rows="3"
                       name="descripcion" 
-                      ref={register({required: {value:true,message:'Este campo es obligatorio'}})}
+                      ref={register({required: {value:true,message:'Este campo es obligatorio'},
+                      maxLength : {value: 60,message: 'caracteres maximo 100'},
+                      minLength : {value: 6,message: 'Caracteres minmos  10'  } })} 
                       placeholder="Descripcion De La Falla.   Favor De Anotar Con El Mayor Detalle Posible La Falla Encontrada"
                     />
                   </Col>
@@ -162,7 +164,9 @@ function FormularioReporte(){
                     <Form.Control
                       as="textarea"
                       rows="3"
-                      ref={register({required: {value:true,message:'Este campo es obligatorio'}})}
+                      ref={register({required: {value:true,message:'Este campo es obligatorio'},
+                      maxLength : {value: 60,message: 'caracteres maximo 100'},
+                      minLength : {value: 6,message: 'Caracteres minmos  10'  } })} 
                       name="accion" 
                       placeholder="Acción Tomada"
                     />
