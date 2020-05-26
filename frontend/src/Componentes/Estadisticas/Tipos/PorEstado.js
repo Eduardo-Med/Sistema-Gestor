@@ -5,18 +5,32 @@ import {VerticalGridLines, HorizontalGridLines, XAxis, YAxis,
   
 
 const PorEstado = () => {
-  const [desde, setDesde] = useState();
-  const [hasta, setHasta] = useState();
+  const fecha = new Date();
+  const hoy = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+fecha.getDate()
+  const [desde, setDesde] = useState(hoy);
+  const [hasta, setHasta] = useState(hoy);
   const [data, setData] = useState();
   
   const handleInputChangeDesde = (event) => {
     event.persist();
-    setDesde(event.target.value);
+    if(event.target.value <= hasta)
+      setDesde(event.target.value);
+    else
+    {
+      alert(`La fecha "Desde:" debe ser menor o igual a la fecha "Hasta:"`);
+      setDesde(hasta);
+    } 
   }
 
   const handleInputChangeHasta = (event) => {
     event.persist();
-    setHasta(event.target.value);
+    if(event.target.value >= desde)
+      setHasta(event.target.value);
+    else
+    {
+      alert(`La fecha "Hasta:" debe ser mayor o igual a la fecha "Desde:"`);
+      setHasta(desde);
+    } 
   }
 
   
@@ -43,11 +57,11 @@ const PorEstado = () => {
       <content className=' row'>
         <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Desde: </label>
-          <input type="date" className="form-control" onChange={handleInputChangeDesde}></input>
+          <input type="date" className="form-control" onChange={handleInputChangeDesde} value={desde}></input>
         </div>
         <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Hasta: </label>
-          <input type="date" className="form-control" onChange={handleInputChangeHasta}></input>
+          <input type="date" className="form-control" onChange={handleInputChangeHasta} value={hasta}></input>
         </div>
         
         <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
