@@ -24,6 +24,8 @@ function Salones(){
 
 
   const nuevoSalon = ()=>{
+    var special = new RegExp("^(?=.*[!@#$&*.<>%/()¿¡])");
+
     swal({
       text: 'Poner el nombre del salon.',
       content: "input",
@@ -33,18 +35,21 @@ function Salones(){
       },
 
     }).then(async (value)=>{
-
       if( value !== null && value !== ""){
-        if(value.length > 4){
-          swal("Campo Demasiado Grande", "Intentelo de nuevo", "error");
-        }else{
-          const result = await agregarSalon(value)
-          if(result.status === 200 ){
-            swal("Salon Agregado Correctamente!", "Espere un momento porfavor", "success");
-            window.location.reload(false)
+        if(!special.test(value)){
+          if(value.length > 4){
+            swal("Campo Demasiado Grande", "Intentelo de nuevo", "error");
           }else{
-            swal("A ocurrido un error!", "Intentelo de nuevo mas tarde", "error");
+            const result = await agregarSalon(value)
+            if(result.status === 200 ){
+              swal("Salon Agregado Correctamente!", "Espere un momento porfavor", "success");
+              window.location.reload(false)
+            }else{
+              swal("A ocurrido un error!", "Intentelo de nuevo mas tarde", "error");
+            }
           }
+        }else{
+          swal("No Se Permiten Caracteres Especiales!", "Intentelo de nuevo mas tarde", "error");
         }
       }else{
         swal("Campo vacio", "Intentelo de nuevo", "error");

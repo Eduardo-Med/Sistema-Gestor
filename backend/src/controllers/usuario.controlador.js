@@ -7,7 +7,8 @@ const encryptPassword = require("../helpers/encryptPassword");
 usuarioCtrl.getUsuarios = async (req, res) => {
   try {
     const pool = await poolPromise
-    const result = await pool.request().query(`select * from usuario `)
+    const result = await pool.request().query(`select * from usuario where idUsuario != 1`)
+   
     res.status("200").send({usuario: result.recordset});
   } catch (e) {
     res.status("204").send(e);

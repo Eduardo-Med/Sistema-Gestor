@@ -15,6 +15,8 @@ function FormularioReporte(){
   const [salones, setSalones] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [datosForm, setDatosForm] = useState({Salon: "B21"});
+  const [mesajeObligatorio, setMensajeObligatorio] = useState("Problema con:")
+  const [colorAlerta, setColorAlerta] = useState("black")
 
 
   useEffect(() => {
@@ -34,25 +36,33 @@ function FormularioReporte(){
 
   const onSubmit = async (data)=>{
 
-    if(cookies.tipoUsuario){
-      data={...data,idUsuario:cookies.userId,correoAnonimo:'Ninguno'}
+    const {cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,otro} = data;
+
+    if(!cpu && !monitor && !teclado && !mouse && !red && !cableEnergia && !cableVgaHdmi && !canon && !otro){
+      setMensajeObligatorio("Campo Obligatorio Seleccione Alguna Opcion")
+      setColorAlerta('red')
     }else{
-      if(data.reporte){
-        data={...data,idUsuario:1};
+      setMensajeObligatorio("Campo Obligatorio Seleccione Alguna Opcion")
+      setColorAlerta('black')
+      if(cookies.tipoUsuario){
+        data={...data,idUsuario:cookies.userId,correoAnonimo:'Ninguno'}
       }else{
-        data={...data,idUsuario:1,accion:"Ninguna"};
+        if(data.reporte){
+          data={...data,idUsuario:1};
+        }else{
+          data={...data,idUsuario:1,accion:"Ninguna"};
+        }
       }
 
-    }
 
-
-    const respuesta = await agregarReporte(data);
-    if(respuesta.status === 200 ){
-      swal("Reporte Enviado Correctamente","Presiona el boton para salir", "success");
-      window.location.reload(false)
-      data={}
-    }else{
-      swal("A ocurrido un error intentelo de nuevo mas tarde","error")
+      const respuesta = await agregarReporte(data);
+      if(respuesta.status === 200 ){
+        swal("Reporte Enviado Correctamente","Presiona el boton para salir", "success");
+        window.location.reload(false)
+        data={}
+      }else{
+        swal("A ocurrido un error intentelo de nuevo mas tarde","error")
+      }
     }
   }
 
@@ -168,7 +178,7 @@ function FormularioReporte(){
                       maxLength : {value: 60,message: 'caracteres maximo 100'},
                       minLength : {value: 6,message: 'Caracteres minmos  10'  } })} 
                       name="accion" 
-                      placeholder="Acción Tomada"
+                      placeholder="Acción Tomada*"
                     />
                     :
                     <Form.Control
@@ -209,7 +219,7 @@ function FormularioReporte(){
               </Container>
             </Col>
             <Col xs="12" md="6" className="mb">
-              <h3>Problema con: </h3>
+              <h3 style={{color: colorAlerta}}>{mesajeObligatorio}</h3>
               <Container>
                 <Row>
                   <Col>
@@ -301,6 +311,17 @@ function FormularioReporte(){
                         label="CAÑON"
                         type="checkbox"
                         id="9"
+                      />
+                    </div>
+                    <div>
+                      <Form.Check
+                        ref={register({value:false})}
+                        name="otro"
+                        custom
+                        inline
+                        label="OTRO"
+                        type="checkbox"
+                        id="10"
                       />
                     </div>
                   </Col>

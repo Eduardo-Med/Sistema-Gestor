@@ -24,6 +24,7 @@ function Detalles ({ show, onHide,reporte }){
         cableEnergia: reporte.cableEnergia,
         cableVgaHdmi: reporte.cableVgaHdmi,
         canon: reporte.canon,
+        otro: reporte.otro
       })
 
       setDatosForm({
@@ -226,6 +227,19 @@ function Detalles ({ show, onHide,reporte }){
                   onClick={()=>setValorProblemas({...valorProblemas, canon: !valorProblemas.canon})}
                   checked={valorProblemas.canon}
                 />
+              </div>
+              <div>
+                  <Form.Check
+                    ref={register({value:false})}
+                    name="otro"
+                    custom
+                    inline
+                    label="OTRO"
+                    type="checkbox"
+                    id="10"
+                    onClick={()=>setValorProblemas({...valorProblemas, otro: !valorProblemas.otro})}
+                    checked={valorProblemas.otro}
+                  />
               </div>
               </Col>
             </Row>

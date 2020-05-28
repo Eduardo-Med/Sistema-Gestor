@@ -120,7 +120,7 @@ function Usuarios() {
                   {!usuario.activo ?
                   <button className="btn btn-dark mr-2" onClick={()=>activar(usuario.idUsuario)}>Activar</button>
                   :
-                  <button className="btn btn-dark mr-2" onClick={()=>desactivar(usuario.idUsuario)}>Desactivar</button>}
+                  <button  className="btn btn-dark mr-2" onClick={()=>desactivar(usuario.idUsuario)}>Desactivar</button>}
                   <button className="btn btn-primary mr-2" data-toggle="modal" data-target="#ModalEditar" onClick={()=>editarUsuario(usuario)}>Editar</button>
                   <button className="btn btn-danger mr-2" data-toggle="modal" data-target=".bd-example-modal-sm" onClick={()=>asignarIdUsuario(usuario.idUsuario)}>Eliminar</button>
                </td>

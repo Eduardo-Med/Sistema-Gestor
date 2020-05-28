@@ -110,7 +110,7 @@ function App() {
               <Row>
                 <Menu usuario="Admin" />
               </Row>
-              <Row style={{minHeight: '70vh'}}>
+              <Row style={{minHeight: '70vh', marginRight:"15px"}}>
                 <Usuarios/>
                 <RegistroUsuario/>
               </Row>

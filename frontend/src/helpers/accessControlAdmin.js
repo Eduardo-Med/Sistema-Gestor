@@ -2,6 +2,7 @@ import React from "react"
 
 import { useCookies } from 'react-cookie';
 import PaginaPermiso from '../Componentes/PaginaPermiso'
+import Menu from '../Componentes/Otros/BarraNavegacion'
 
 
 export const accessControlAdmin = (WrappepComponent) =>{
@@ -29,7 +30,15 @@ export const accessControlAdminAndTecnico = (WrappepComponent) =>{
             if(cookies.tipoUsuario=== '1' || cookies.tipoUsuario=== '2'){
                 return <WrappepComponent {...props} />
             }else{
-                return <PaginaPermiso></PaginaPermiso>
+                return (
+                    <div>
+                    <Menu usuario="Admin" />
+                    <PaginaPermiso></PaginaPermiso>
+                    </div>
+                )
+                    
+
+                
             }   
         }
     }

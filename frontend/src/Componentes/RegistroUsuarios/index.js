@@ -26,13 +26,18 @@ function RegistroUsuarios() {
                     <h2>Formulario <span style={{color: "#F39B53"}}>Registro</span></h2>
                 </div>
                 <form className="form__reg" autoComplete="off" onSubmit={agregarUsuario}>
-                    <input min="3" max="60" className="input1" name="nombre" type="text" placeholder="&#128100; Nombre" required autofocus onChange={handleInputChange}/>
-                    <input max="75" pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" className="input1" name="email" type="email" placeholder="&#9993; Email" required onChange={handleInputChange}/>
+                    <label style={{marginBottom: "-4px"}}>Nombre*</label>
+                    <input pattern="[A-Za-z0-9 ]+" min="3" max="60" maxLength="60" minLength="3" className="input1" name="nombre" type="text" placeholder="&#128100; Nombre" required autofocus onChange={handleInputChange}/>
+                    <label style={{marginBottom: "-4px"}}>Correo*</label>
+                    <input max="75" maxLength="75"  pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$" className="input1" name="email" type="email" placeholder="&#9993; Email" required onChange={handleInputChange}/>
+                    <label style={{marginBottom: "-4px"}}>Semestre*</label>
                     <input min="0" max="13" className="input1" name="semestre" type="number" placeholder="&#8962; Semestre" required onChange={handleInputChange}/>
+                    <label style={{marginBottom: "-4px"}}>No. Clave*</label>
                     <input maxLength="8" minLength="8" className="input1" name="noControl" type="tel" placeholder="# No. Clave" required onChange={handleInputChange}/>
+                    <label style={{marginBottom: "-4px"}}>Contraseña</label>
                     <input minLength="8" maxLength="8" className="input1" name="contra" type="password" placeholder="Contraseña" required onChange={handleInputChange}/>
-                    <label style={{marginBottom: "-4px"}}>Seleccione Tipo de Usuario</label>
-                    <select  required className="input1" name="idTipo"  type="sem" placeholder="tipo de usuario"  id="idTipo" onChange={handleInputChange}>
+                    <label style={{marginBottom: "-4px"}}>Seleccione Tipo de Usuario*</label>
+                    <select  required className="input1" name="idTipo"  type="sem" placeholder="tipo de usuario*"  id="idTipo" onChange={handleInputChange}>
                         <option value="Administrador">Administrador</option>
                         <option value="Soporte Técnico">Soporte Técnico</option>
                         <option value="Reportador">Reportador</option>

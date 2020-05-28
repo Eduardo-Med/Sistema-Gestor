@@ -31,8 +31,8 @@ class ReporteControlador{
             fecha = moment().format().substr(0,10);;
             hora =  moment().format('h:mm:ss a').substr(0,8);
             const pool = await poolPromise
-            const {descripcion,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario,correoAnonimo,nombreAnonimo} = req.body
-            await pool.request().query(`exec Insercion_Reporte '${fecha}', '${hora}','Pendiente','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario},'${correoAnonimo}','${nombreAnonimo}' `);      
+            const {descripcion,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario,correoAnonimo,nombreAnonimo,otro} = req.body
+            await pool.request().query(`exec Insercion_Reporte '${fecha}', '${hora}','Pendiente','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario},'${correoAnonimo}','${nombreAnonimo}',${otro} `);      
             res.status(200).json({Info: "Reporte Agregado Correctamente"});
             console.log("Reporte Agregado Correctamente")
           } catch (e) {
@@ -50,10 +50,10 @@ class ReporteControlador{
             fecha = moment().format().substr(0,10);;
             hora =  moment().format('h:mm:ss a').substr(0,8);
             const pool = await poolPromise
-            const {descripcion,estado,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario} = req.body
+            const {descripcion,estado,accion,cpu,monitor,teclado,mouse,red,cableEnergia,cableVgaHdmi,canon,Equipo,Salon,idUsuario,otro} = req.body
             console.log(req.body)
             console.log(req.params.idReporte)
-              await pool.request().query(`exec Modificar_Reporte ${req.params.idReporte}, '${fecha}', '${hora}','${estado}','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario}`);
+              await pool.request().query(`exec Modificar_Reporte ${req.params.idReporte}, '${fecha}', '${hora}','${estado}','${descripcion}','${accion}',${cpu},${monitor},${teclado},${mouse},${red},${cableEnergia},${cableVgaHdmi},${canon},'${Equipo}','${Salon}',${idUsuario},${otro}`);
               console.log("actualizado")
               res.status(200).json({message: "Reporte Actualizado Correctamente"})
           } catch (error) {
