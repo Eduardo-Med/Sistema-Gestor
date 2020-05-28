@@ -108,7 +108,8 @@ const PorEquipo = () => {
           {x: 'Red', y: response.data.estadistica[0].Red},
           {x: 'Cable Energia', y: response.data.estadistica[0]["Cable Energia"]},
           {x: 'Cable VGA/HDMI', y: response.data.estadistica[0]["Cable VGA/HDMI"]},
-          {x: 'Cañón', y: response.data.estadistica[0].Cañón}
+          {x: 'Cañón', y: response.data.estadistica[0].Cañón},
+          {x: 'Otro', y: response.data.estadistica[0].Otro}
         ]);
     }
     else
@@ -162,6 +163,7 @@ const PorEquipo = () => {
               cluster='2020'
               barWidth={0.5}
               data = {data}
+              color = "#fcf51e"
             />
             <XAxis />
             <YAxis />

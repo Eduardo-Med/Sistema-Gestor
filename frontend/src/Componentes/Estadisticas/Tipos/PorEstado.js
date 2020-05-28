@@ -78,6 +78,7 @@ const PorEstado = () => {
               cluster='2020'
               barWidth={0.5}
               data = {data}
+              color = "#a84032"
             />
             <XAxis />
             <YAxis />

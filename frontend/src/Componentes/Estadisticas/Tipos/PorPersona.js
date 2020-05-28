@@ -135,6 +135,7 @@ const opcionesPersona = () => {
               cluster='2020'
               barWidth={0.5}
               data = {data}
+              color = "#32a852"
             />
             <XAxis />
             <YAxis />
