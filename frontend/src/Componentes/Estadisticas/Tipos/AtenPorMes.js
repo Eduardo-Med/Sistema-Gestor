@@ -5,70 +5,76 @@ import { VerticalGridLines, HorizontalGridLines, XAxis, YAxis,
   
 
 const AtenPorMes = () => {
-  const year = new Date().getFullYear();
-  const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
-  const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
-  const [semestreSelected, setSemestreSelected] = useState('I');
+  const [primerYear, setPrimerYear] = useState([]);
+  const [yearSelected, setYearSelected] = useState("Default");
+  const [semestreSelected, setSemestreSelected] = useState("Default");
   const [data, setData] = useState();
+
+  const [tituloEstadistica, setTituloEstadistica] = useState("");
   
   const handleInputChange = (event) => {
     event.persist();
     setYearSelected(event.target.value);
-}
-const semestreSelect = sem => {
-  setSemestreSelected(sem);
-}
+  }
+
+  const semestreSelect = sem => {
+    setSemestreSelected(sem);
+  }
+
   useEffect(() => {
-      
-      estadisticaPrimerYear();
-      estadisticaAtenPorMes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    estadisticaPrimerYear();
+  }, []);
   
-    async function estadisticaPrimerYear() {
-      const response = await getOldestYear()
-      if (response.status === 200) {
-        setPrimerYear(response.data.estadistica[0].Year);
-      }
-      else
-        console.log(response)
-  };
-  async function estadisticaAtenPorMes() {
-    const response = await getStadisticAtenPorMes(yearSelected)
+  async function estadisticaPrimerYear() {
+    const response = await getOldestYear()
     if (response.status === 200) {
-      if(semestreSelected === 'I'){
-        setData ([
-          {x: 'Enero', y: response.data.estadistica[0].Enero},
-          {x: 'Febrero', y: response.data.estadistica[0].Febrero},
-          {x: 'Marzo', y: response.data.estadistica[0].Marzo},
-          {x: 'Abril', y: response.data.estadistica[0].Abril},
-          {x: 'Mayo', y: response.data.estadistica[0].Mayo},
-          {x: 'Junio', y: response.data.estadistica[0].Junio},
-        ]);
-      }
-      else{
-        setData ([
-          {x: 'Julio', y: response.data.estadistica[0].Julio},
-          {x: 'Agosto', y: response.data.estadistica[0].Agosto},
-          {x: 'Septiembre', y: response.data.estadistica[0].Septiembre},
-          {x: 'Octubre', y: response.data.estadistica[0].Octubre},
-          {x: 'Noviembre', y: response.data.estadistica[0].Noviembre},
-          {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
-        ]);
-      }
+      setPrimerYear(response.data.estadistica);
     }
     else
       console.log(response)
-};
+  }
+
+  async function estadisticaAtenPorMes() {
+    if(yearSelected === "Default" || semestreSelected === "Default")
+    {
+      alert('Debe elegir un Año y un Semestre, antes de obtener la estadística.')
+    }
+    else
+    {
+      setTituloEstadistica('Fallas en '+yearSelected+'-'+semestreSelected);
+      const response = await getStadisticAtenPorMes(yearSelected)
+      if (response.status === 200) {
+        if(semestreSelected === 'I'){
+          setData ([
+            {x: 'Enero', y: response.data.estadistica[0].Enero},
+            {x: 'Febrero', y: response.data.estadistica[0].Febrero},
+            {x: 'Marzo', y: response.data.estadistica[0].Marzo},
+            {x: 'Abril', y: response.data.estadistica[0].Abril},
+            {x: 'Mayo', y: response.data.estadistica[0].Mayo},
+            {x: 'Junio', y: response.data.estadistica[0].Junio},
+          ]);
+        }
+        else{
+          setData ([
+            {x: 'Julio', y: response.data.estadistica[0].Julio},
+            {x: 'Agosto', y: response.data.estadistica[0].Agosto},
+            {x: 'Septiembre', y: response.data.estadistica[0].Septiembre},
+            {x: 'Octubre', y: response.data.estadistica[0].Octubre},
+            {x: 'Noviembre', y: response.data.estadistica[0].Noviembre},
+            {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
+          ]);
+        }
+      }
+      else
+        console.log(response)
+    }
+  }
 
 const opcionesYear = () => {
-    const element = [];
-    for (let i= primerYear; i <= year; i++) {
-      element.push(<option value={i}>{i}</option>)
-    }
-    return(
-      element    
-    );  
+  const element = primerYear.map((years,index) =>(
+    <option value={years.Year}>{years.Year}</option>
+  ))
+  return element;
 }
 
   return (
@@ -77,6 +83,7 @@ const opcionesYear = () => {
         <div className='col-11 col-sm-12 col-md-12 col-lg-6 col-xl-5 mt-2'>
           <label>Año </label>
           <select className="form-control" onChange={handleInputChange}>
+            <option value="Default">Opciones</option>
             {opcionesYear()}
           </select>
         </div>
@@ -95,7 +102,7 @@ const opcionesYear = () => {
           <input type='button' className="form-control text-white bg-success " onClick={()=> {estadisticaAtenPorMes()}} value='Aceptar'/>
         </div>  
         <div className='col-11 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4'>
-          <h2>Fallas en {yearSelected}</h2>
+          <h2>{tituloEstadistica}</h2>
           <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
