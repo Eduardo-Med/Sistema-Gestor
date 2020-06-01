@@ -104,35 +104,35 @@ const opcionesPersona = () => {
   return (
     <div className="m-3">
       <content className=' row'>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Año </label>
           <select className="form-control" onChange={handleInputChange}>
             <option value="Default">Opciones</option>
             {opcionesYear()}
           </select>
         </div>
-        <div className='col-11 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
+        <div className='col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
           <label>Semestre I 
             <input type='radio' className="form-control" name="semestre"onClick={()=> {semestreSelect('I')} } value='I'/>
           </label>
         </div>
-        <div className='col-11 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
+        <div className='col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
           <label>Semestre II 
             <input type='radio' className="form-control" name="semestre" onClick={()=> {semestreSelect('II')}} value='II'/>
           </label>
         
         </div>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Persona </label>
           <select className="form-control" onChange={handleInputChangePersona}>
             <option value="Default">Opciones</option>
             {opcionesPersona()}
           </select>
         </div>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
           <input type='button' className="form-control text-white bg-success " onClick={()=> {estadisticaPorPersona()}} value='Aceptar'/>
         </div>  
-        <div className='col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 mt-4'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 scrolling'>
           <h2>{tituloEstadistica}</h2>
           <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             

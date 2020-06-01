@@ -59,19 +59,19 @@ const PorEstado = () => {
   return (
     <div className="m-3">
       <content className=' row'>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Desde: </label>
           <input type="date" className="form-control" onChange={handleInputChangeDesde} value={desde}></input>
         </div>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Hasta: </label>
           <input type="date" className="form-control" onChange={handleInputChangeHasta} value={hasta}></input>
         </div>
         
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
           <input type='button' className="form-control text-white bg-success " onClick={()=> {estadisticaPorEstado()}} value='Aceptar'/>
         </div>  
-        <div className='col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 mt-4'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 scrolling'>
         <h2>{tituloEstadistica}</h2>
           <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
