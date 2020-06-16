@@ -1,6 +1,6 @@
 # Sistema Gestor De Reportes Del Laboratorio De Sistemas
 
-<a href="http://www.lapro-orto.top.mx">Enlace hacia a la pagina</a>
+<a href="http://reportesith.herokuapp.com">Enlace hacia a la pagina</a>
 
 <h3>Descripcion</h3>
 
