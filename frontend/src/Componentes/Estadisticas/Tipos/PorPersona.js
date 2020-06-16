@@ -6,13 +6,14 @@ import {VerticalGridLines, HorizontalGridLines, XAxis, YAxis,
   
 
 const PorPersona = () => {
-  const year = new Date().getFullYear();
-  const [primerYear, setPrimerYear] = useState(new Date().getFullYear());
-  const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
-  const [semestreSelected, setSemestreSelected] = useState('I');
+  const [primerYear, setPrimerYear] = useState([]);
+  const [yearSelected, setYearSelected] = useState("Default");
+  const [semestreSelected, setSemestreSelected] = useState("Default");
   const [usuarios, setUsuarios] = useState([]);
-  const [personaSelected, setPersonaSelected] = useState('' );
+  const [personaSelected, setPersonaSelected] = useState("Defualt");
   const [data, setData] = useState();
+
+  const [tituloEstadistica, setTituloEstadistica] = useState("");
   
   const handleInputChange = (event) => {
     event.persist();
@@ -29,7 +30,6 @@ const handleInputChangePersona = (event) => {
   }
   
   useEffect(() => {
-      estadisticaPorPersona();
       estadisticaPrimerYear();
       async function loadUsuarios() {
         const response = await getUsersType('Soporte Técnico');
@@ -44,47 +44,53 @@ const handleInputChangePersona = (event) => {
     async function estadisticaPrimerYear() {
       const response = await getOldestYear()
       if (response.status === 200) {
-        setPrimerYear(response.data.estadistica[0].Year);
+        setPrimerYear(response.data.estadistica);
       }
       else
         console.log(response)
   };
+  
   async function estadisticaPorPersona() {
-    const response = await getStadisticPersona(yearSelected, personaSelected)
-    if (response.status === 200) {
-      if(semestreSelected === 'I'){
-        setData ([
-          {x: 'Enero', y: response.data.estadistica[0].Enero},
-          {x: 'Febrero', y: response.data.estadistica[0].Febrero},
-          {x: 'Marzo', y: response.data.estadistica[0].Marzo},
-          {x: 'Abril', y: response.data.estadistica[0].Abril},
-          {x: 'Mayo', y: response.data.estadistica[0].Mayo},
-          {x: 'Junio', y: response.data.estadistica[0].Junio},
-        ]);
-      }
-      else{
-        setData ([
-          {x: 'Julio', y: response.data.estadistica[0].Julio},
-          {x: 'Agosto', y: response.data.estadistica[0].Agosto},
-          {x: 'Septiembre', y: response.data.estadistica[0].Septiembre},
-          {x: 'Octubre', y: response.data.estadistica[0].Octubre},
-          {x: 'Noviembre', y: response.data.estadistica[0].Noviembre},
-          {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
-        ]);
-      }
+    if(yearSelected === "Default" || semestreSelected === "Default" || personaSelected === "Default")
+    {
+      alert('Debe elegir un Año, un Semestre y una Persona, antes de obtener la estadística.')
     }
     else
-      console.log(response)
+    {
+      setTituloEstadistica('Fallas Atendias en '+yearSelected+'-'+semestreSelected);
+      const response = await getStadisticPersona(yearSelected, personaSelected)
+      if (response.status === 200) {
+        if(semestreSelected === 'I'){
+          setData ([
+            {x: 'Enero', y: response.data.estadistica[0].Enero},
+            {x: 'Febrero', y: response.data.estadistica[0].Febrero},
+            {x: 'Marzo', y: response.data.estadistica[0].Marzo},
+            {x: 'Abril', y: response.data.estadistica[0].Abril},
+            {x: 'Mayo', y: response.data.estadistica[0].Mayo},
+            {x: 'Junio', y: response.data.estadistica[0].Junio},
+          ]);
+        }
+        else{
+          setData ([
+            {x: 'Julio', y: response.data.estadistica[0].Julio},
+            {x: 'Agosto', y: response.data.estadistica[0].Agosto},
+            {x: 'Septiembre', y: response.data.estadistica[0].Septiembre},
+            {x: 'Octubre', y: response.data.estadistica[0].Octubre},
+            {x: 'Noviembre', y: response.data.estadistica[0].Noviembre},
+            {x: 'Diciembre', y: response.data.estadistica[0].Diciembre},
+          ]);
+        }
+      }
+      else
+        console.log(response)
+    }
 };
 
 const opcionesYear = () => {
-    const element = [];
-    for (let i= primerYear; i <= year; i++) {
-      element.push(<option value={i}>{i}</option>)
-    }
-    return(
-      element    
-    );  
+  const element = primerYear.map((years,index) =>(
+    <option value={years.Year}>{years.Year}</option>
+  ))
+  return element;
 }
 const opcionesPersona = () => {
     console.log(usuarios)
@@ -98,34 +104,36 @@ const opcionesPersona = () => {
   return (
     <div className="m-3">
       <content className=' row'>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Año </label>
           <select className="form-control" onChange={handleInputChange}>
+            <option value="Default">Opciones</option>
             {opcionesYear()}
           </select>
         </div>
-        <div className='col-11 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
+        <div className='col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
           <label>Semestre I 
             <input type='radio' className="form-control" name="semestre"onClick={()=> {semestreSelect('I')} } value='I'/>
           </label>
         </div>
-        <div className='col-11 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
+        <div className='col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-5'>
           <label>Semestre II 
             <input type='radio' className="form-control" name="semestre" onClick={()=> {semestreSelect('II')}} value='II'/>
           </label>
         
         </div>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-2'>
           <label>Persona </label>
           <select className="form-control" onChange={handleInputChangePersona}>
+            <option value="Default">Opciones</option>
             {opcionesPersona()}
           </select>
         </div>
-        <div className='col-11 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mt-5'>
           <input type='button' className="form-control text-white bg-success " onClick={()=> {estadisticaPorPersona()}} value='Aceptar'/>
         </div>  
-        <div className='col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 mt-4'>
-          <h2>Fallas en {yearSelected}</h2>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4 scrolling'>
+          <h2>{tituloEstadistica}</h2>
           <XYPlot xType="ordinal" height={300} width={1000} xDistance={100}>
             
             <VerticalGridLines />
@@ -135,6 +143,7 @@ const opcionesPersona = () => {
               cluster='2020'
               barWidth={0.5}
               data = {data}
+              color = "#32a852"
             />
             <XAxis />
             <YAxis />

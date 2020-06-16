@@ -5,16 +5,11 @@ class CorreoControlador{
     async enviarCorreo(req, res){
         try { 
             const {Equipo,Salon,email} = req.body
-
-            console.log(Equipo)
-            console.log(Salon)
-            console.log(email)
-
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth:{
-                    user: 'laprortocorreo@gmail.com',
-                    pass: 'Laproorto'
+                    user: 'reportessistemasith@gmail.com',
+                    pass: 'reportessistemas'
                 }
             })
         

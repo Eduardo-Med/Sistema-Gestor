@@ -42,7 +42,7 @@ function FormularioReporte(){
       setMensajeObligatorio("Campo Obligatorio Seleccione Alguna Opcion")
       setColorAlerta('red')
     }else{
-      setMensajeObligatorio("Campo Obligatorio Seleccione Alguna Opcion")
+      setMensajeObligatorio("Problema con:")
       setColorAlerta('black')
       if(cookies.tipoUsuario){
         data={...data,idUsuario:cookies.userId,correoAnonimo:'Ninguno'}
@@ -152,8 +152,8 @@ function FormularioReporte(){
                       rows="3"
                       name="descripcion" 
                       ref={register({required: {value:true,message:'Este campo es obligatorio'},
-                      maxLength : {value: 60,message: 'caracteres maximo 100'},
-                      minLength : {value: 6,message: 'Caracteres minmos  10'  } })} 
+                      maxLength : {value: 100,message: 'caracteres maximo 100'},
+                      minLength : {value: 6,message: 'Caracteres minimos  10'  } })} 
                       placeholder="Descripcion De La Falla.   Favor De Anotar Con El Mayor Detalle Posible La Falla Encontrada"
                     />
                   </Col>
@@ -175,8 +175,8 @@ function FormularioReporte(){
                       as="textarea"
                       rows="3"
                       ref={register({required: {value:true,message:'Este campo es obligatorio'},
-                      maxLength : {value: 60,message: 'caracteres maximo 100'},
-                      minLength : {value: 6,message: 'Caracteres minmos  10'  } })} 
+                      maxLength : {value: 100,message: 'caracteres maximo 100'},
+                      minLength : {value: 6,message: 'Caracteres minimos  10'  } })} 
                       name="accion" 
                       placeholder="Acción Tomada*"
                     />

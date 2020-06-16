@@ -42,7 +42,7 @@ function EditarUsuario({usuario}) {
     }
 
     const editarUsuario= async(data)=>{
-        updateUser(data)
+        await updateUser(data)
         window.location.reload(false);
     }
 

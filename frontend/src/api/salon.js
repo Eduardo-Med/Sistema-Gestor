@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/v1/salon'
 
+//const baseUrl = 'http://localhost:5000/api/v1/salon'
+const baseUrl = "https://rest-reportes.herokuapp.com/api/v1/salon"
 export async function obtenerSalones (){
     try{
       const response = await axios({

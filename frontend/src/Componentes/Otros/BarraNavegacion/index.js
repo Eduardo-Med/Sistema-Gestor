@@ -14,7 +14,7 @@ function BarraNavegacion ({usuario}) {
     removeCookie('token', {path: '/'});
     removeCookie('userId', {path: '/'});
     removeCookie('tipoUsuario', {path: '/'});
-    window.location.href = "http://localhost:3000/Login"
+    window.location.href = "https://reportesith.herokuapp.com/Login"
   }
 
   const renderOpciones= (tipo)=>{
@@ -22,8 +22,7 @@ function BarraNavegacion ({usuario}) {
       return adminInfo.map((list) => (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
     }else if(tipo === "2"){
       return tecnico.map(list =>  (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
-    }else if(tipo === "3"){
-      return
+      
     }else{ reportador.map(list =>  (<Link to={list.url} className="textMenu mr-4 barrita"> {list.name}</Link>))
       return null
     }

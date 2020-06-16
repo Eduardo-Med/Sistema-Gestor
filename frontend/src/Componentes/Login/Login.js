@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import './style.css';
 import {iniciarSesion} from '../../api/autentificacion'
 import {accessControlNone} from '../../helpers/accessControlNone'
+import swal from 'sweetalert'
 
 const Login = () => {
 
@@ -19,13 +20,13 @@ const Login = () => {
   const enviarInformacion= async()=>{
       const response = await iniciarSesion(datosForm);
       if (response.status === 200) {
-        console.log(response)
+        swal("Informacion Correcta", "Espere un momento cargando informacion", "success");
         setCookie("token", response.data.token, { path: "/", maxAge: 3600 });
         setCookie("userId", response.data.userId, { path: "/", maxAge: 3600 });
         setCookie("tipoUsuario", response.data.tipoUsuario, {path: "/",maxAge: 3600,});
         response.data.tipoUsuario === 1 ? 
-        window.location.href = "http://localhost:3000/Registrousuario" :
-        window.location.href = "http://localhost:3000/FormularioReporte"
+        window.location.href = "https://reportesith.herokuapp.com/Registrousuario" :
+        window.location.href = "https://reportesith.herokuapp.com/FormularioReporte"
       } else if (response.status === 404) {
         setMensajeError("Numero de control no existe")
       } else {

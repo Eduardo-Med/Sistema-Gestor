@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api/v1/reporte'
-
+//const baseUrl = 'http://localhost:5000/api/v1/reporte'
+const baseUrl = "https://rest-reportes.herokuapp.com/api/v1/reporte"
 export async function obtenerReportes (){
     try{
       const response = await axios({

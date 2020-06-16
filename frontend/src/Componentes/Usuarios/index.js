@@ -116,7 +116,7 @@ function Usuarios() {
                <td>{usuario.noControl}</td>
                <td>{renderTipoUsuario(usuario.idTipo)}</td>
                <td>{!usuario.activo ? "Desactivado" : "Activado"}</td>
-               <td>
+               <td className="col-12">
                   {!usuario.activo ?
                   <button className="btn btn-dark mr-2" onClick={()=>activar(usuario.idUsuario)}>Activar</button>
                   :
@@ -139,7 +139,7 @@ function Usuarios() {
         <i class=" iconoColor fas fa-plus-circle ml-1" data-toggle="modal" data-target="#exampleModalCenter"></i>
         </h2>
       </div>
-      <div className="table-responsive tamanoTabla1">
+      <div className=" tamanoTabla1">
       {renderUsuarios()}
       </div>
       <EditarUsuario usuario={usuario}/>

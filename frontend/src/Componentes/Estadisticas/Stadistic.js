@@ -17,7 +17,7 @@ const Stadistic = () => {
         <h1>Estadísticas</h1>
       </header>
       <content className=' row'>
-        <div className='col-11 col-sm-11   col-md-11 col-lg-11 col-xl-11 mt-4'>
+        <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4'>
           <Tabs defaultActiveKey="year" id="uncontrolled-tab-example">
             <Tab eventKey="year" title="Fallas Por Año">
               <Year/>

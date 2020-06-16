@@ -24,7 +24,7 @@ function Salones(){
 
 
   const nuevoSalon = ()=>{
-    var special = new RegExp("^(?=.*[!@#$&*.<>%/()¿¡])");
+    var special = new RegExp("^(?=.*[!@#$&*.<>%/()¿?¡])");
 
     swal({
       text: 'Poner el nombre del salon.',
